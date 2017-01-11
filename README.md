@@ -1,5 +1,5 @@
 [![Stories in Ready](https://badge.waffle.io/ULCC/hyrax_ulcc.png?label=ready&title=Ready)](https://waffle.io/ULCC/hyrax_ulcc)
-[![Stories in In Progress](https://badge.waffle.io/ULCC/hyrax_ulcc.png?label=ready&title=In Progress)](https://waffle.io/ULCC/hyrax_ulcc)
+[![Stories in In Progress](https://badge.waffle.io/ULCC/hyrax_ulcc.png?label=inprogress&title=In Progress)](https://waffle.io/ULCC/hyrax_ulcc)
 
 # README
 
