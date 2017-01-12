@@ -47,7 +47,7 @@ cd
 if [ ! -d /home/vagrant/hyrax_ulcc ]; then
   git clone https://github.com/ULCC/hyrax_ulcc.git 
   cd hyrax_ulcc
-  cp /vagrant/install_files/.env .env
+  cp /vagrant/install_files/.env_rename_me .env
 fi
 
 cd /home/vagrant/hyrax_ulcc
