@@ -1,0 +1,105 @@
+<?xml version='1.0' encoding='utf-8'?>
+<eprints xmlns='http://eprints.org/ep2/data/2.0'>
+  <eprint id='http://eprints.whiterose.ac.uk/id/eprint/100182'>
+    <eprintid>100182</eprintid>
+    <rev_number>20</rev_number>
+    <documents>
+      <document id='http://eprints.whiterose.ac.uk/id/document/551673'>
+        <docid>551673</docid>
+        <rev_number>3</rev_number>
+        <files>
+          <file id='http://eprints.whiterose.ac.uk/id/file/1050920'>
+            <fileid>1050920</fileid>
+            <datasetid>document</datasetid>
+            <objectid>551673</objectid>
+            <filename>hisr12127.pdf</filename>
+            <mime_type>application/pdf</mime_type>
+            <hash>b6e3bc065d0a9a2c34cd8e72af53134d</hash>
+            <hash_type>MD5</hash_type>
+            <filesize>224791</filesize>
+            <mtime>2016-05-25 16:25:04</mtime>
+            <url>http://eprints.whiterose.ac.uk/100182/1/hisr12127.pdf</url>
+          </file>
+        </files>
+        <eprintid>100182</eprintid>
+        <pos>1</pos>
+        <placement>1</placement>
+        <mime_type>application/pdf</mime_type>
+        <format>text</format>
+        <formatdesc>hisr12127</formatdesc>
+        <language>en</language>
+        <security>public</security>
+        <license>cc_by</license>
+        <main>hisr12127.pdf</main>
+        <content>published</content>
+        <coversheetid>2</coversheetid>
+      </document>
+    </documents>
+    <eprint_status>archive</eprint_status>
+    <userid>2847</userid>
+    <source>pure</source>
+    <dir>disk0/00/10/01/82</dir>
+    <datestamp>2016-05-25 16:25:03</datestamp>
+    <lastmod>2016-11-25 05:41:55</lastmod>
+    <status_changed>2016-05-25 16:25:03</status_changed>
+    <type>article</type>
+    <metadata_visibility>show</metadata_visibility>
+    <contact_email>bart.lambert@york.ac.uk</contact_email>
+    <creators>
+      <item>
+        <name>
+          <family>Lambert</family>
+          <given>Bart Roger Denise</given>
+        </name>
+        <id>bart.lambert@york.ac.uk</id>
+      </item>
+      <item>
+        <name>
+          <family>Ormrod</family>
+          <given>William Mark</given>
+        </name>
+        <id>0000-0003-0044-726X</id>
+      </item>
+    </creators>
+    <title>A matter of trust: the royal regulation of England&apos;s French residents during wartime, 1294-1377</title>
+    <ispublished>pub</ispublished>
+    <full_text_status>public</full_text_status>
+    <note>© 2016, The Authors Historical Research published by John Wiley &amp; Sons Ltd on behalf of Institute of Historical Research.</note>
+    <date>2016-05</date>
+    <date_type>published</date_type>
+    <publication>Historical Research</publication>
+    <pagerange>208-226</pagerange>
+    <pages>19</pages>
+    <institution>
+      <item>York</item>
+    </institution>
+    <refereed>TRUE</refereed>
+    <issn>0950-3471</issn>
+    <official_url>http://dx.doi.org/10.1111/1468-2281.12127</official_url>
+    <article_type>article</article_type>
+    <series_number>244</series_number>
+    <series_volume>89</series_volume>
+    <pure_status>approved</pure_status>
+    <pureid>48784616</pureid>
+    <dates>
+      <item>
+        <date>2016-05</date>
+        <date_type>published</date_type>
+      </item>
+      <item>
+        <date>2014-11-04</date>
+        <date_type>accepted</date_type>
+      </item>
+      <item>
+        <date>2016-01-09</date>
+        <date_type>published_online</date_type>
+      </item>
+    </dates>
+    <hoa_compliant>500</hoa_compliant>
+    <hoa_date_acc>2014-11-04</hoa_date_acc>
+    <hoa_date_pub>2016-01-09</hoa_date_pub>
+    <hoa_date_fcd>2016-11-06</hoa_date_fcd>
+    <hoa_date_foa>2016-11-06</hoa_date_foa>
+    <hoa_version_fcd>VoR</hoa_version_fcd>
+  </eprint>
+</eprints>
