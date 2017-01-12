@@ -22,3 +22,6 @@
 
 # Ignore dotenv file
 .env
+
+# Sample eprints files
+*eprint*
