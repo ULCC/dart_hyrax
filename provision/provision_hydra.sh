@@ -59,7 +59,7 @@ cd lib/tasks
 sudo rm hydra.rake
 wget https://raw.githubusercontent.com/tdonohue/hydra-head/38b75222e2e6885c63a8847e9ce04635f35fa30e/hydra-core/lib/tasks/hydra.rake
 
-echo 'Starting Hyrax in /home/vagrant/hyrax_ulcc with rake hydra:server'
-# cd /home/vagrant/hyrax_ulcc
-# rake hydra:server
-
+echo 'Provisioning is complete, now follow these steps:'
+echo '1. vagrant ssh'
+echo '2. cd /home/vagrant/hyrax_ulcc'
+echo '3. rake hydra:server'
