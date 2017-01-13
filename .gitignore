@@ -25,3 +25,6 @@
 
 # Sample eprints files
 *eprint*
+
+# Ignore .vagrant
+/provision/.vagrant
