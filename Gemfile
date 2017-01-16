@@ -7,7 +7,8 @@ end
 
 # Local gems
 gem 'dotenv-rails'
-
+gem 'hydra-role-management'
+gem 'dlibhydra', :git => 'https://github.com/geekscruff/dlibhydra.git', branch: 'hyrax_jal'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.1'

@@ -1,11 +1,19 @@
 # Generated via
 #  `rails generate hyrax:work JournalArticle`
-class JournalArticle < ActiveFedora::Base
+class JournalArticle < ::Dlibhydra::JournalArticle # ActiveFedora::Base
   include ::Hyrax::WorkBehavior
-  include ::Hyrax::BasicMetadata
+  # include ::Hyrax::BasicMetadata
   # Change this to restrict which works can be added as a child.
-  # self.valid_child_concerns = ['Book']
-  validates :title, presence: { message: 'Your work must have a title.' }
-  
+  # self.valid_child_concerns = []
+  validates :title, presence: {message: 'Your work must have a title.'}
+
   self.human_readable_type = 'Journal Article'
+
+  class JournalArticleIndexer < Hyrax::WorkIndexer
+    include Dlibhydra::IndexesJournalArticle
+  end
+
+  def self.indexer
+    JournalArticleIndexer
+  end
 end

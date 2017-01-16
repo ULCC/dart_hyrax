@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161225232965) do
+ActiveRecord::Schema.define(version: 20170116160515) do
 
   create_table "bookmarks", force: :cascade do |t|
     t.integer  "user_id",       null: false
@@ -156,6 +156,17 @@ ActiveRecord::Schema.define(version: 20161225232965) do
     t.index ["receiver_id", "receiver_type"], name: "index_mailboxer_receipts_on_receiver_id_and_receiver_type"
   end
 
+  create_table "minter_states", force: :cascade do |t|
+    t.string   "namespace",            default: "default", null: false
+    t.string   "template",                                 null: false
+    t.text     "counters"
+    t.integer  "seq",        limit: 8, default: 0
+    t.binary   "rand"
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
+    t.index ["namespace"], name: "index_minter_states_on_namespace", unique: true
+  end
+
   create_table "permission_template_accesses", force: :cascade do |t|
     t.integer  "permission_template_id"
     t.string   "agent_type"
@@ -214,6 +225,17 @@ ActiveRecord::Schema.define(version: 20161225232965) do
     t.datetime "updated_at",         null: false
     t.index ["local_authority_id"], name: "index_qa_local_authority_entries_on_local_authority_id"
     t.index ["uri"], name: "index_qa_local_authority_entries_on_uri", unique: true
+  end
+
+  create_table "roles", force: :cascade do |t|
+    t.string "name"
+  end
+
+  create_table "roles_users", id: false, force: :cascade do |t|
+    t.integer "role_id"
+    t.integer "user_id"
+    t.index ["role_id", "user_id"], name: "index_roles_users_on_role_id_and_user_id"
+    t.index ["user_id", "role_id"], name: "index_roles_users_on_user_id_and_role_id"
   end
 
   create_table "searches", force: :cascade do |t|
