@@ -3,6 +3,8 @@
 FITS="1.0.2"
 RUBY="2.3.3"
 RAILS="5.0.0.1"
+FITSDIR="/home/vagrant"
+APPDIR="/home/vagrant"
 
 sudo yum install -y git-core zlib zlib-devel gcc-c++ patch readline readline-devel libyaml-devel libffi-devel openssl-devel make bzip2 autoconf automake libtool bison curl sqlite-devel 
 sudo yum install -y java-1.8.0-openjdk.x86_64 wget unzip
@@ -54,7 +56,7 @@ sudo systemctl start redis.service
 # Install Fits
 # See https://github.com/projecthydra-labs/hyrax#characterization
 cd 
-if [ ! -d /home/vagrant/fits-1.0.2 ]
+if [ ! -d $FITSDIR/fits-$FITS ]
 then  
   echo 'Downloading Fits '$FITS
   wget http://projects.iq.harvard.edu/files/fits/files/fits-$FITS.zip 
@@ -70,7 +72,7 @@ gem install rails -v $RAILS
 # Clone and run hyrax_ulcc
 cd
 mkdir tmp 
-if [ ! -d /home/vagrant/hyrax_ulcc ]
+if [ ! -d $APPDIR/hyrax_ulcc ]
 then
   echo 'Cloning hyrax_ulcc'
   git clone https://github.com/ULCC/hyrax_ulcc.git 
@@ -79,7 +81,7 @@ then
 else
   echo 'hyrax_ulcc is already cloned, moving on ... '
 fi
-cd /home/vagrant/hyrax_ulcc
+cd $APPDIR/hyrax_ulcc
 echo 'Running bundler and db:migrate'
 bundle install 
 rake db:migrate 
@@ -94,3 +96,5 @@ echo 'Provisioning is complete, now follow these steps:'
 echo '1. vagrant ssh'
 echo '2. cd ~/hyrax_ulcc'
 echo '3. rake hydra:server'
+echo '4. change the DEV_DIR setting in .env if needs be'
+echo '5. change config.fits_path in config/initializers/hyrax.rb'
