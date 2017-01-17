@@ -23,8 +23,10 @@
 # Ignore dotenv file
 .env
 
-# Sample eprints files
-*eprint*
+# Ignore Gemfile.lock
 
 # Ignore .vagrant
 /provision/.vagrant
+# Ignore idea files (should be in global config really)
+.idea
+.idea/*
