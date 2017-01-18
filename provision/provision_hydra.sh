@@ -10,7 +10,7 @@ sudo yum install -y java-1.8.0-openjdk.x86_64 wget unzip
 # Install rbenv https://github.com/rbenv/rbenv
 # See https://www.digitalocean.com/community/tutorials/how-to-install-ruby-on-rails-with-rbenv-on-centos-7 
 cd
-if [ ! -d /home/vagrant/.rbenv ]
+if [ ! -d .rbenv ]
 then
   echo 'Installing .rbenv'
   git clone git://github.com/sstephenson/rbenv.git .rbenv  
@@ -54,7 +54,7 @@ sudo systemctl start redis.service
 # Install Fits
 # See https://github.com/projecthydra-labs/hyrax#characterization
 cd 
-if [ ! -d /home/vagrant/fits-1.0.2 ]
+if [ ! -d fits-1.0.2 ]
 then  
   echo 'Downloading Fits '$FITS
   wget http://projects.iq.harvard.edu/files/fits/files/fits-$FITS.zip 
@@ -70,7 +70,7 @@ gem install rails -v $RAILS
 # Clone and run hyrax_ulcc
 cd
 mkdir tmp 
-if [ ! -d /home/vagrant/hyrax_ulcc ]
+if [ ! -d hyrax_ulcc ]
 then
   echo 'Cloning hyrax_ulcc'
   git clone https://github.com/ULCC/hyrax_ulcc.git 
@@ -79,7 +79,8 @@ then
 else
   echo 'hyrax_ulcc is already cloned, moving on ... '
 fi
-cd /home/vagrant/hyrax_ulcc
+cd
+cd hyrax_ulcc
 echo 'Running bundler and db:migrate'
 bundle install 
 rake db:migrate 
