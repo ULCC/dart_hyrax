@@ -30,9 +30,9 @@ rbenv global $RUBY
 
 echo 'Installing LibreOffice, ImageMagick and Redis'
 # LibreOffice
-sudo yum install –y libreoffice 
+yes | sudo yum install –y libreoffice
 # Install ImageMagick
-sudo yum install –y ImageMagick
+yes | sudo yum install –y ImageMagick
 # Install Redis - enable EPEL 
 # See https://support.rackspace.com/how-to/install-epel-and-additional-repositories-on-centos-and-red-hat/
 yes | sudo yum install -y epel-release

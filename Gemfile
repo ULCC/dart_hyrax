@@ -23,7 +23,7 @@ gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 # See https://github.com/rails/execjs#readme for more supported runtimes
-gem 'therubyracer', platforms: :ruby
+# gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -68,4 +68,9 @@ gem 'devise-guests', '~> 0.5'
 group :development, :test do
   gem 'fcrepo_wrapper'
   gem 'rspec-rails'
+end
+
+group :development do
+  # for when running on windows
+  gem 'wdm', '>= 0.1.0' if Gem.win_platform?
 end

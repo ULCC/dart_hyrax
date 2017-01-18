@@ -23,8 +23,5 @@
 # Ignore dotenv file
 .env
 
-# Sample eprints files
-*eprint*
-
 # Ignore .vagrant
 /provision/.vagrant
