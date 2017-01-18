@@ -23,10 +23,5 @@
 # Ignore dotenv file
 .env
 
-# Ignore Gemfile.lock
-
 # Ignore .vagrant
 /provision/.vagrant
-# Ignore idea files (should be in global config really)
-.idea
-.idea/*
