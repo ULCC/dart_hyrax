@@ -25,3 +25,6 @@
 
 # Ignore .vagrant
 /provision/.vagrant
+
+# Ignore gemfile.lock
+Gemfile.lock

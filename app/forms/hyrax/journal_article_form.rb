@@ -9,15 +9,34 @@ module Hyrax
                    :keyword, :rights, :publisher, :date_created, :subject, :language,
                    :identifier, :based_near, :related_url, :source]
 
-    # JA I don't know why :resource_type is added in here by default
-    self.terms += [:resource_type]
-    # remove the + to replace the whole set (necessary if you want to affect the order)
-    self.terms += [:title, :creator_resource_ids, :creator_string, :doi,:journal_resource_ids,
-                   :volume_number,:issue_number,  :pagination,
-                   :date_published, :date_available, :date_accepted, :date_submitted,
-                   :abstract, :department_resource_ids,:publication_status, :refereed,:language,
-                   :subject_resource_ids,:keyword,:official_url,:related_url,
-                   :funder_resource_ids, :project_resource_ids]
+    # self.terms += [:resource_type]
+    # use + to replace the whole set of terms
+    # this defines form order
+    self.terms += [:title,
+                   :doi, # auto-populate other metadata
+                   :creator_resource_ids,
+                   :creator_string,
+                   # :journal_resource_ids, table-based?
+                   :volume_number, # smaller, with issue
+                   :issue_number, # smaller, with issue
+                   :pagination,
+                   :date_published, # reformat, with next three
+                   :date_available,
+                   :date_accepted,
+                   :date_submitted,
+                   :abstract,
+                   :official_url, # check for valid url
+                   :publication_status, # file-based
+                   :refereed, # buttons, true, false or unknown
+                   :language, # table-based
+                   :department_resource_ids, # object-based
+                   :subject_resource_ids, # object-based???
+                   :keyword,
+                   :related_url, # check for valid url
+    # :funder_resource_ids, table-based ?
+    # :project_resource_ids, # some kind of list, file, table or object
+    # :managing_organisation_ids # default value; object
+    ]
 
     self.required_fields = [:title]
     self.required_fields -= [:creator, :keyword, :rights]

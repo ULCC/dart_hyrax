@@ -28,6 +28,10 @@ echo 'Installing ruby '$RUBY
 rbenv install $RUBY 
 rbenv global $RUBY
 
+echo 'Install nodejs'
+# Nodejs
+yes | sudo yum install -y nodejs
+
 echo 'Installing LibreOffice, ImageMagick and Redis'
 # LibreOffice
 yes | sudo yum install –y libreoffice

@@ -31,10 +31,6 @@ module Extras
         self[Solrizer.solr_name('journal_value')]
       end
 
-      def managing_organisation
-        self[Solrizer.solr_name('managing_organisation_value')]
-      end
-
       def date_available
         self[Solrizer.solr_name('date_available')]
       end

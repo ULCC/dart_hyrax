@@ -111,7 +111,6 @@ class CatalogController < ApplicationController
     config.add_show_field solr_name("journal_value", :stored_searchable), label: "Journal"
     config.add_show_field solr_name("publisher_value", :stored_searchable), label: "Publisher"
     config.add_show_field solr_name("funder_value", :stored_searchable), label: "Funder"
-    config.add_show_field solr_name("managing_organisation_value", :stored_searchable), label: "Institution"
     config.add_show_field solr_name("abstract", :stored_searchable), label: "Abstract"
     config.add_show_field solr_name("date_published", :stored_searchable), label: "Date Published"
     config.add_show_field solr_name("date_available", :stored_searchable), label: "Date Available"
