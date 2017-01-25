@@ -9,6 +9,7 @@ en:
       suffix:           "@example.org"
     footer:
       copyright_html: "<strong>Copyright &copy; 2016 Project Hydra</strong> Licensed under the Apache License, Version 2.0"
+
   simple_form:
     labels:
       defaults:
@@ -17,7 +18,7 @@ en:
         doi: "DOI"
         department_resource_ids: "Department, Research Centre or Other Unit"
         pagination: "Pages"
-        subject_resource_ids: "Subject Heading"
+        refereed: "Refereed?"
     hints:
       defaults:
         creator_resource_ids: "Start typing to select a name"

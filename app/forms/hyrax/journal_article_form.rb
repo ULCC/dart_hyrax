@@ -13,24 +13,24 @@ module Hyrax
     # use + to replace the whole set of terms
     # this defines form order
     self.terms += [:title,
-                   :doi, # auto-populate other metadata
+                   :doi, # auto-populate other metadata with crossref lookup
                    :creator_resource_ids,
-                   :creator_string,
-                   # :journal_resource_ids, table-based?
+                   # :creator_string, auto-add in actor
+                   # :journal_resource_ids, table-based? auto-add publisher
                    :volume_number, # smaller, with issue
                    :issue_number, # smaller, with issue
-                   :pagination,
-                   :date_published, # reformat, with next three
+                   :pagination, # smaller,
+                   :date_published, # smaller, date picker/formatter, ideally combine with next three
                    :date_available,
                    :date_accepted,
                    :date_submitted,
-                   :abstract,
+                   :abstract, # larger
                    :official_url, # check for valid url
                    :publication_status, # file-based
                    :refereed, # buttons, true, false or unknown
                    :language, # table-based
                    :department_resource_ids, # object-based
-                   :subject_resource_ids, # object-based???
+                   :subject, # auto-suggest with FAST (removed _resource_ids)
                    :keyword,
                    :related_url, # check for valid url
     # :funder_resource_ids, table-based ?

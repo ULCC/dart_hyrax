@@ -54,7 +54,9 @@ yes | sudo yum install -y redis
 # For production, ensure starts at startup
 # See http://sharadchhetri.com/2014/10/04/install-redis-server-centos-7-rhel-7/
 echo 'Starting Redis'
-sudo systemctl start redis.service 
+sudo systemctl start redis.service
+echo 'Enable Redis start at boot'
+sudo systemctl enable redis.service
 # Install Fits
 # See https://github.com/projecthydra-labs/hyrax#characterization
 cd 

@@ -56,13 +56,6 @@ module AuthorityService
       super('licenses')
     end
   end
-  class LanguagesService < Hyrax::QaSelectService
-    include ::FileAuthorityConcern
-
-    def initialize
-      super('languages')
-    end
-  end
   class JournalArticleVersionsService < Hyrax::QaSelectService
     include ::FileAuthorityConcern
 

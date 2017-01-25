@@ -1,8 +1,8 @@
 # Place any default configuration for solr_wrapper here
 version: 6.3.0
 port: <%= ENV['SOLR_DEVELOPMENT_PORT'] || 8983 %>
-instance_dir: <%= ENV['DEV_DIR'] || tmp %>/solr-development
-download_dir: <%= ENV['DEV_DIR'] || tmp %>
+instance_dir: /home/vagrant/tmp/solr-development
+download_dir: /home/vagrant/tmp
 persist: true
 collection:
   persist: true

@@ -1,6 +1,7 @@
-module Extras
+module LocalSolrDocument
   extend ActiveSupport::Concern
 
+  # TODO alphebetize
     included do
 
       def abstract
@@ -60,7 +61,7 @@ module Extras
       end
 
       def subject
-        self[Solrizer.solr_name('subject_value')]
+        self[Solrizer.solr_name('subject')]
       end
 
       def language
@@ -81,6 +82,10 @@ module Extras
 
       def doi
         self[Solrizer.solr_name('doi')]
+      end
+
+      def managing_organisation
+        self[Solrizer.solr_name('managing_organisation_value')]
       end
 
     end

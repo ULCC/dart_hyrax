@@ -1,4 +1,0 @@
-<% ps_service = AuthorityService::PublicationStatusesService.new %>
-<% record.publication_status.each do |r| %>
-    <%= link_to_field('publication_status', r, ps_service.label(r)) %> <%= iconify_auto_link(r, false) %><br/>
-<% end %>
