@@ -9,6 +9,10 @@ module LocalSolrDocument
       end
 
       def creator
+        self[Solrizer.solr_name('creator')]
+      end
+
+      def creator_value
         self[Solrizer.solr_name('creator_value')]
       end
 
@@ -16,12 +20,8 @@ module LocalSolrDocument
         self[Solrizer.solr_name('department_value')]
       end
 
-      def publisher
-        self[Solrizer.solr_name('publisher_value')]
-      end
-
       def funder
-        self[Solrizer.solr_name('funder_value')]
+        self[Solrizer.solr_name('funder')]
       end
 
       def project
@@ -29,7 +29,7 @@ module LocalSolrDocument
       end
 
       def journal
-        self[Solrizer.solr_name('journal_value')]
+        self[Solrizer.solr_name('journal')]
       end
 
       def date_available
@@ -65,7 +65,7 @@ module LocalSolrDocument
       end
 
       def language
-        self[Solrizer.solr_name('language_value')]
+        self[Solrizer.solr_name('language')]
       end
 
       def issue_number

@@ -15,7 +15,8 @@ module Hyrax
     self.terms += [:title,
                    :doi, # auto-populate other metadata with crossref lookup
                    :creator_resource_ids,
-                   # :creator_string, auto-add in actor
+                   :orcid,
+                   :creator_string,
                    # :journal_resource_ids, table-based? auto-add publisher
                    :volume_number, # smaller, with issue
                    :issue_number, # smaller, with issue

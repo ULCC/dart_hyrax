@@ -1,20 +1,32 @@
 #!/bin/bash
 
-# Install postgress
-# See https://www.digitalocean.com/community/tutorials/how-to-install-and-use-postgresql-on-centos-7
-# also change 'peer' to md5
-# restart postgres
-# create user
-# create database
-
-# we'll need make for the bundle install - this takes a while, might be better doing yum install make
+# we'll need make for uinstalling the pg gem - this takes a while, might be better doing yum install make
 # yes | sudo yum groupinstall "Development Tools"
 yes | sudo yum install -y make
 
+# Install postgress
+# See https://www.digitalocean.com/community/tutorials/how-to-install-and-use-postgresql-on-centos-7
+
 yes | sudo yum install -y postgresql-server postgresql-contrib postgresql-devel
 sudo postgresql-setup initdb
+
+# change ident to md5 in /var/lib/pgsql/data/pg_hba.conf
+sudo sed -i 's/ident/md5/' /var/lib/pgsql/data/pg_hba.conf
+
 sudo systemctl start postgresql
 sudo systemctl enable postgresql
+
+sudo -u postgres bash -c "psql -c \"CREATE USER vagrant WITH PASSWORD 'vagrant';\""
+sudo -u postgres bash -c "psql -c \"CREATE DATABASE development;\""
+
+# Setup dnsmasq for *.dev wildcard domains
+yes | sudo yum -y install dnsmasq
+sudo sed -i 's/#listen-address=/listen-address=127.0.0.1/' /etc/dnsmasq.conf
+echo "address=/dev/127.0.0.1" | sudo tee -a /etc/dnsmasq.d/dev
+sudo systemctl restart dnsmasq
+sudo systemctl enable dnsmasq
+
+echo "address=/dev/127.0.0.1" | sudo tee -a /etc/dnsmasq.d/dev
 
 # Clone and run hyku
 cd
@@ -29,6 +41,7 @@ fi
 cd
 cd hyku
 echo 'Running bundler and db:migrate'
+# if error with rainbow, do gem update --system
 bundle install 
 rake db:migrate 
 # Update the rake task so that we can bind to 0.0.0.0 (needed in vagrant to see the app running on localhost on the host machine)

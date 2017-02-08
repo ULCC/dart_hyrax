@@ -3,7 +3,7 @@ Hyrax.config do |config|
   config.register_curation_concern :book
   # Injected via `rails g hyrax:work JournalArticle`
   config.register_curation_concern :journal_article
-  # Email recipient of messages sent via the contact form
+    # Email recipient of messages sent via the contact form
   # config.contact_email = "repo-admin@example.org"
 
   # Text prefacing the subject entered in the contact form

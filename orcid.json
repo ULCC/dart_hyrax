@@ -1,0 +1,112 @@
+{
+  "message-version": "1.1",
+  "orcid-profile": {
+    "orcid": null,
+    "orcid-id": null,
+    "orcid-identifier": {
+      "value": null,
+      "uri": "http://orcid.org/0000-0001-5490-4927",
+      "path": "0000-0001-5490-4927",
+      "host": "orcid.org"
+    },
+    "orcid-deprecated": null,
+    "orcid-preferences": {
+      "locale": "EN"
+    },
+    "orcid-history": {
+      "creation-method": "API",
+      "completion-date": {
+        "value": 1421071333195
+      },
+      "submission-date": {
+        "value": 1421071099650
+      },
+      "last-modified-date": {
+        "value": 1471364544132
+      },
+      "claimed": {
+        "value": true
+      },
+      "source": {
+        "source-orcid": {
+          "value": null,
+          "uri": "http://orcid.org/0000-0003-1678-3989",
+          "path": "0000-0003-1678-3989",
+          "host": "orcid.org"
+        },
+        "source-client-id": null,
+        "source-name": {
+          "value": "PURE"
+        },
+        "source-date": null
+      },
+      "deactivation-date": null,
+      "verified-email": null,
+      "verified-primary-email": null,
+      "visibility": null
+    },
+    "orcid-bio": {
+      "personal-details": {
+        "given-names": {
+          "value": "Thomas William Charles",
+          "visibility": null
+        },
+        "family-name": {
+          "value": "Stoneham",
+          "visibility": null
+        },
+        "credit-name": null,
+        "other-names": {
+          "other-name": [
+            {
+              "value": "Tom Stoneham"
+            }
+          ],
+          "visibility": "PUBLIC"
+        }
+      },
+      "biography": null,
+      "researcher-urls": null,
+      "contact-details": null,
+      "keywords": null,
+      "external-identifiers": {
+        "external-identifier": [
+          {
+            "orcid": null,
+            "external-id-orcid": {
+              "value": null,
+              "uri": "http://orcid.org/0000-0002-5982-8983",
+              "path": "0000-0002-5982-8983",
+              "host": "orcid.org"
+            },
+            "external-id-common-name": {
+              "value": "Scopus Author ID"
+            },
+            "external-id-reference": {
+              "value": "26033536700"
+            },
+            "external-id-url": {
+              "value": "http://www.scopus.com/inward/authorDetails.url?authorID=26033536700&partnerID=MN8TOARS"
+            },
+            "external-id-source": null,
+            "source": null
+          }
+        ],
+        "visibility": "PUBLIC"
+      },
+      "delegation": null,
+      "scope": null
+    },
+    "orcid-activities": {
+      "affiliations": null,
+      "orcid-works": null,
+      "funding-list": null
+    },
+    "orcid-internal": null,
+    "type": "USER",
+    "group-type": null,
+    "client-type": null
+  },
+  "orcid-search-results": null,
+  "error-desc": null
+}

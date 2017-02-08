@@ -1,5 +1,4 @@
 # Place any default configuration for solr_wrapper here
-port: <%= ENV['FCREPO_DEVELOPMENT_PORT'] || 8984 %>
+port: 8984
 enable_jms: false
-download_dir: /home/vagrant/tmp
-fcrepo_home_dir: /home/vagrant/tmp/fcrepo4-development-data
+download_dir: tmp
