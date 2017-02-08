@@ -30,5 +30,10 @@ Load languages from lexvo:
 
 rake hyrax:controlled_vocabularies:language
 
-nb. for the uri lookup (/terms), need to url encode, including . with %2E
-http%3A%2F%2Flexvo%2Eorg%2Fid%2Fiso639-3%2Faaa
+Setup for current persons authority:
+
+rake ulcc:load_persons
+
+Load departments authority (with test data):
+
+rake ulcc:load_orgs
