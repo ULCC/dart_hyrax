@@ -1,4 +1,4 @@
-# This migration comes from hyrax (originally 20160328222166)
+# This migration comes from local (originally 20160328222166)
 class AddExternalKeyToContentBlocks < ActiveRecord::Migration
   def change
     add_column :content_blocks, :external_key, :string

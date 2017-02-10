@@ -1,4 +1,4 @@
-# This migration comes from hyrax (originally 20160328222233)
+# This migration comes from local (originally 20160328222233)
 class AddWorksToUserStats < ActiveRecord::Migration
   def self.up
     add_column :user_stats, :work_views, :integer

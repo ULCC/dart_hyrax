@@ -1,4 +1,4 @@
-# This migration comes from hyrax (originally 20161021180154)
+# This migration comes from local (originally 20161021180154)
 class CreatePermissionTemplateAccess < ActiveRecord::Migration
   def change
     create_table :permission_template_accesses do |t|

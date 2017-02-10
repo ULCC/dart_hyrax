@@ -40,7 +40,10 @@ namespace :ulcc do
 
   desc "Load fundref data into database"
   task load_fundref: :environment do
-
+    require 'hyrax/controlled_vocabulary/importer/funder'
+    Hyrax::ControlledVocabulary::Importer::Funder.new.import
+    # Insert at end of config/initializers/hyrax.rb
+    # Qa::Authorities::Local.register_subauthority('funders', 'Qa::Authorities::Local::TableBasedAuthority')
   end
 
   desc "load_terms"
@@ -136,7 +139,7 @@ namespace :ulcc do
         scheme.save
         config = Rails.root + 'config/dlibhydra.yml'
         text = File.read(config)
-        replacement_text = text.gsub(/#{i}:\s\S{2,}\n/, "#{i}: '#{scheme.id}'\n")
+        replacement_text = text.gsub(/#{i}:\s\S{2,}/, "#{i}: '#{scheme.id}'")
         File.open(config, "w") {|file| file.puts replacement_text }
 
         puts "Concept scheme for #{i} is #{scheme.id}"
@@ -197,7 +200,7 @@ namespace :ulcc do
         scheme.save
         config = Rails.root + 'config/dlibhydra.yml'
         text = File.read(config)
-        replacement_text = text.gsub(/#{i}:\s\S{2,}\n/, "#{i}: '#{scheme.id}'\n")
+        replacement_text = text.gsub(/#{i}:\s\S{2,}/, "#{i}: '#{scheme.id}'")
         File.open(config, "w") {|file| file.puts replacement_text }
 
         puts "Concept scheme for #{i} is #{scheme.id}"
@@ -232,6 +235,67 @@ namespace :ulcc do
     end
     puts 'Finished!'
 
+  end
+
+  desc "load projects"
+  task load_projects: :environment do
+
+    # path = Rails.root + 'lib/'
+    # .csv files should exist in the specified path
+    # filename will be the name of the concept scheme
+    list = ['projects']
+    list.each do |i|
+
+      begin
+        scheme = ''
+        solr = RSolr.connect :url => SOLR
+        response = solr.get 'select', :params => {
+            :q=>"preflabel_tesim:#{i} AND has_model_ssim:Dlibhydra::ConceptScheme",
+            :start=>0,
+            :rows=>10
+        }
+
+        if response["response"]["numFound"] == 0
+          puts 'Creating the Concept Scheme'
+          scheme = Dlibhydra::ConceptScheme.new
+        else
+          puts 'Retrieving the Concept Scheme'
+          scheme = Dlibhydra::ConceptScheme.find(response["response"]["docs"].first['id'])
+        end
+        scheme.preflabel = i
+        scheme.save
+        config = Rails.root + 'config/dlibhydra.yml'
+        text = File.read(config)
+        replacement_text = text.gsub(/#{i}:\s\S{2,}/, "#{i}: '#{scheme.id}'")
+        File.open(config, "w") {|file| file.puts replacement_text }
+
+        puts "Concept scheme for #{i} is #{scheme.id}"
+      rescue
+        puts $!
+      end
+
+      # puts 'Processing ' + i
+      #
+      # arr = CSV.read(path + "assets/lists/#{i}.csv")
+      # arr = arr.uniq # remove any duplicates
+      #
+      # arr.each do |c|
+      #   begin
+      #     h = Dlibhydra::Concept.new
+      #     h.preflabel = c[0].strip
+      #     h.altlabel = [c[2].strip] unless c[2].nil?
+      #     h.same_as = [c[1].strip] unless c[1].nil?
+      #     h.concept_scheme = scheme
+      #     h.save
+      #     scheme.concepts << h
+      #     scheme.save
+      #     puts "Term for #{c[0]} created at #{h.id}"
+      #   rescue
+      #     puts $!
+      #   end
+      # end
+    end
+    puts 'Finished!'
   end
 
 

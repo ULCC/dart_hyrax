@@ -1,4 +1,4 @@
-# This migration comes from hyrax (originally 20160328222232)
+# This migration comes from local (originally 20160328222232)
 class CreateWorkViewStats < ActiveRecord::Migration
   def change
     create_table :work_view_stats do |t|

@@ -1,5 +1,5 @@
 # Generated via
-#  `rails generate hyrax:work JournalArticle`
+#  `rails generate local:work JournalArticle`
 class JournalArticle < ::Dlibhydra::JournalArticle # ActiveFedora::Base
   include ::Hyrax::WorkBehavior
   # include ::Hyrax::BasicMetadata

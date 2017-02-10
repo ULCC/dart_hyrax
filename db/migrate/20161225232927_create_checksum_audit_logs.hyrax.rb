@@ -1,4 +1,4 @@
-# This migration comes from hyrax (originally 20160328222153)
+# This migration comes from local (originally 20160328222153)
 class CreateChecksumAuditLogs < ActiveRecord::Migration
   def self.up
     create_table :checksum_audit_logs do |t|

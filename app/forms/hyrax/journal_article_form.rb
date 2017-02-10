@@ -1,5 +1,5 @@
 # Generated via
-#  `rails generate hyrax:work JournalArticle`
+#  `rails generate local:work JournalArticle`
 module Hyrax
   class JournalArticleForm < Hyrax::Forms::WorkForm
     self.model_class = ::JournalArticle
@@ -16,7 +16,6 @@ module Hyrax
                    :doi, # auto-populate other metadata with crossref lookup
                    :creator_resource_ids,
                    :orcid,
-                   :creator_string,
                    # :journal_resource_ids, table-based? auto-add publisher
                    :volume_number, # smaller, with issue
                    :issue_number, # smaller, with issue
@@ -34,8 +33,10 @@ module Hyrax
                    :subject, # auto-suggest with FAST (removed _resource_ids)
                    :keyword,
                    :related_url, # check for valid url
-    # :funder_resource_ids, table-based ?
-    # :project_resource_ids, # some kind of list, file, table or object
+                   :funder,
+                   :project_resource_ids,
+                   :project_name,
+                   :project_identifier
     # :managing_organisation_ids # default value; object
     ]
 

@@ -1,7 +1,6 @@
 module LocalAuthorityConcern
   extend ActiveSupport::Concern
   included do
-
     def initialize
       super
     end

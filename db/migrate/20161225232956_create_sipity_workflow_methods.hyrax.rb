@@ -1,4 +1,4 @@
-# This migration comes from hyrax (originally 20161012182404)
+# This migration comes from local (originally 20161012182404)
 class CreateSipityWorkflowMethods < ActiveRecord::Migration
   def change
     create_table :sipity_workflow_methods do |t|

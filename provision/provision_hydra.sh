@@ -4,8 +4,8 @@ FITS="1.0.2"
 RUBY="2.3.3"
 RAILS="5.0.0.1"
 
-sudo yum install -y git-core zlib zlib-devel gcc-c++ patch readline readline-devel libyaml-devel libffi-devel openssl-devel make bzip2 autoconf automake libtool bison curl sqlite-devel 
-sudo yum install -y java-1.8.0-openjdk.x86_64 wget unzip
+yes | sudo yum install -y git-core zlib zlib-devel gcc-c++ patch readline readline-devel libyaml-devel libffi-devel openssl-devel make bzip2 autoconf automake libtool bison curl sqlite-devel
+yes | sudo yum install -y java-1.8.0-openjdk.x86_64 wget unzip nodejs
 
 # Install rbenv https://github.com/rbenv/rbenv
 # See https://www.digitalocean.com/community/tutorials/how-to-install-ruby-on-rails-with-rbenv-on-centos-7 
@@ -27,10 +27,6 @@ fi
 echo 'Installing ruby '$RUBY
 rbenv install $RUBY 
 rbenv global $RUBY
-
-echo 'Install nodejs'
-# Nodejs
-yes | sudo yum install -y nodejs
 
 echo 'Installing LibreOffice, ImageMagick and Redis'
 # LibreOffice
@@ -75,7 +71,6 @@ echo 'Installing rails '$RAILS
 gem install rails -v $RAILS 
 # Clone and run hyrax_ulcc
 cd
-mkdir tmp 
 if [ ! -d hyrax_ulcc ]
 then
   echo 'Cloning hyrax_ulcc'

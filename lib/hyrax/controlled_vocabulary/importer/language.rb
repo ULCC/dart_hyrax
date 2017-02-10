@@ -3,8 +3,8 @@ require 'rdf/rdfxml'
 module Hyrax
   module ControlledVocabulary
     module Importer
-      class Funder
-        URL = 'http://dx.doi.org/10.13039/fundref_registry'.freeze
+      class Language
+        URL = 'http://www.lexvo.org/resources/lexvo_2013-02-09.rdf.gz'.freeze
 
         def initialize
           stdout_logger = Logger.new(STDOUT)
@@ -17,20 +17,28 @@ module Hyrax
 
         def import
           download
+          extract
           logger.info "Importing #{rdf_path}"
-          # Qa::Services::RDFAuthorityParser.import_rdf(
-          #     'languages',
-          #     [rdf_path],
-          #     format: 'rdfxml',
-          #     predicate: RDF::URI('http://www.w3.org/2008/05/skos#prefLabel')
-          # )
+          Qa::Services::RDFAuthorityParser.import_rdf(
+              'languages',
+              [rdf_path],
+              format: 'rdfxml',
+              predicate: RDF::URI('http://www.w3.org/2008/05/skos#prefLabel')
+          )
           logger.info "Import complete"
         end
 
         delegate :logger, to: Rails
 
         def rdf_path
-          @rdf_path ||= download_path
+          @rdf_path ||= download_path.sub(/\.gz$/, '')
+        end
+
+        def extract
+          return if File.exist?(rdf_path)
+          logger.info "Extracting #{download_path}"
+          system("gunzip #{download_path}")
+          raise "Unable to extract #{download_path}" unless $CHILD_STATUS.success?
         end
 
         def download

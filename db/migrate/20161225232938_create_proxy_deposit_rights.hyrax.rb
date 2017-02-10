@@ -1,4 +1,4 @@
-# This migration comes from hyrax (originally 20160328222226)
+# This migration comes from local (originally 20160328222226)
 class CreateProxyDepositRights < ActiveRecord::Migration
   def change
     create_table :proxy_deposit_rights do |t|

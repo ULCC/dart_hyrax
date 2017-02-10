@@ -1,5 +1,5 @@
 # Generated via
-#  `rails generate hyrax:work Book`
+#  `rails generate local:work Book`
 require 'rails_helper'
 include Warden::Test::Helpers
 

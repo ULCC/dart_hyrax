@@ -1,5 +1,5 @@
 # Generated via
-#  `rails generate hyrax:work Book`
+#  `rails generate local:work Book`
 class Book < ActiveFedora::Base
   include ::Hyrax::WorkBehavior
   include ::Hyrax::BasicMetadata

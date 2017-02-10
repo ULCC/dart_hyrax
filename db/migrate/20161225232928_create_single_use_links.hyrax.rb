@@ -1,4 +1,4 @@
-# This migration comes from hyrax (originally 20160328222154)
+# This migration comes from local (originally 20160328222154)
 class CreateSingleUseLinks < ActiveRecord::Migration
   def change
     create_table :single_use_links do |t|

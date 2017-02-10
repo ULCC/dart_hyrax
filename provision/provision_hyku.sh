@@ -22,11 +22,13 @@ sudo -u postgres bash -c "psql -c \"CREATE DATABASE development;\""
 # Setup dnsmasq for *.dev wildcard domains
 yes | sudo yum -y install dnsmasq
 sudo sed -i 's/#listen-address=/listen-address=127.0.0.1/' /etc/dnsmasq.conf
-echo "address=/dev/127.0.0.1" | sudo tee -a /etc/dnsmasq.d/dev
+if [ ! /etc/dnsmasq.d/dev ]
+then
+    echo "address=/dev/127.0.0.1" | sudo tee -a /etc/dnsmasq.d/dev
+fi
+
 sudo systemctl restart dnsmasq
 sudo systemctl enable dnsmasq
-
-echo "address=/dev/127.0.0.1" | sudo tee -a /etc/dnsmasq.d/dev
 
 # Clone and run hyku
 cd
@@ -42,15 +44,9 @@ cd
 cd hyku
 echo 'Running bundler and db:migrate'
 # if error with rainbow, do gem update --system
+gem update --system # other error with rainbow stops bundler
 bundle install 
-rake db:migrate 
-# Update the rake task so that we can bind to 0.0.0.0 (needed in vagrant to see the app running on localhost on the host machine)
-# NB: fiddling with installed gems is a BAD thing to do but it's only needed for local vagrant boxes and development
-echo 'Replacing the hydra-rake task so that we can bind to 0.0.0.0'
-cd $(bundle show hydra-core)
-cd lib/tasks
-sudo rm hydra.rake
-wget https://raw.githubusercontent.com/tdonohue/hydra-head/38b75222e2e6885c63a8847e9ce04635f35fa30e/hydra-core/lib/tasks/hydra.rake
+rake db:migrate
 echo 'Provisioning is complete, now follow these steps:'
 echo '1. vagrant ssh'
 echo '2. cd ~/hyku'

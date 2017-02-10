@@ -1,4 +1,4 @@
-# This migration comes from hyrax (originally 20160328222230)
+# This migration comes from local (originally 20160328222230)
 class AddOrcidToUsers < ActiveRecord::Migration
   def change
     add_column :users, :orcid, :string

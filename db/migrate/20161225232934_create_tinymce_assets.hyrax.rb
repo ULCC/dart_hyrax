@@ -1,4 +1,4 @@
-# This migration comes from hyrax (originally 20160328222163)
+# This migration comes from local (originally 20160328222163)
 class CreateTinymceAssets < ActiveRecord::Migration
   def change
     create_table :tinymce_assets do |t|

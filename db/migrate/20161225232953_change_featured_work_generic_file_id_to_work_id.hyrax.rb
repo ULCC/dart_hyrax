@@ -1,4 +1,4 @@
-# This migration comes from hyrax (originally 20160510000007)
+# This migration comes from local (originally 20160510000007)
 class ChangeFeaturedWorkGenericFileIdToWorkId < ActiveRecord::Migration
   def change
     return unless column_exists?(:featured_works, :generic_file_id)

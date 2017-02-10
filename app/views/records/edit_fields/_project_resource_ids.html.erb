@@ -1,0 +1,7 @@
+<% pr_service = AuthorityService::ProjectService.new %>
+<%= f.input :project_resource_ids, as: :multi_value_select,
+            collection: pr_service.select_all_options,
+            label: 'Related Projects',
+            include_blank: true,
+            item_helper: pr_service.method(:include_current_value),
+            input_html: {class: 'form-control'} %>

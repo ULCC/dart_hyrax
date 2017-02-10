@@ -1,5 +1,5 @@
 # Generated via
-#  `rails generate hyrax:work JournalArticle`
+#  `rails generate local:work JournalArticle`
 require 'rails_helper'
 
 RSpec.describe JournalArticle do

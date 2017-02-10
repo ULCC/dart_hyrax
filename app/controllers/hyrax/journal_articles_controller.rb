@@ -1,5 +1,5 @@
 # Generated via
-#  `rails generate hyrax:work JournalArticle`
+#  `rails generate local:work JournalArticle`
 
 module Hyrax
   class JournalArticlesController < ApplicationController
