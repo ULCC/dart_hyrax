@@ -16,8 +16,10 @@ sudo sed -i 's/ident/md5/' /var/lib/pgsql/data/pg_hba.conf
 sudo systemctl start postgresql
 sudo systemctl enable postgresql
 
+# Add the vagrant user, create a development database and grant vagrant all privileges
 sudo -u postgres bash -c "psql -c \"CREATE USER vagrant WITH PASSWORD 'vagrant';\""
 sudo -u postgres bash -c "psql -c \"CREATE DATABASE development;\""
+sudo -u postgres bash -c "psql -c \"GRANT ALL ON DATABASE development TO vagrant;\""
 
 # Setup dnsmasq for *.dev wildcard domains
 yes | sudo yum -y install dnsmasq

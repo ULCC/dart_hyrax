@@ -298,6 +298,33 @@ namespace :ulcc do
     puts 'Finished!'
   end
 
+  task orcidtest: :environment do
+
+
+  end
+
+
+  def orcid_response(id, token)
+
+
+
+  end
+
+  def connection(url)
+    conn = Faraday.new(:url => url) do |faraday|
+      faraday.request :url_encoded # form-encode POST params
+      faraday.response :logger # log requests to STDOUT
+      faraday.adapter Faraday.default_adapter # make requests with Net::HTTP
+    end
+    conn
+  end
+
+  def validate_orcid(orcid)
+
+  end
+
+
+
 
 
 end

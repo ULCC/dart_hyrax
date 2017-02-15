@@ -6,3 +6,7 @@ en:
       journal_article:
         name:               "Journal Article"
         description:        "Journal articles"
+  simple_form:
+    hints:
+      defaults:
+        journal: "The title of the journal that this item was published in."

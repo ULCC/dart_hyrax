@@ -15,8 +15,9 @@ module Hyrax
     self.terms += [:title,
                    :doi, # auto-populate other metadata with crossref lookup
                    :creator_resource_ids,
-                   :orcid,
+                   # :orcid,
                    # :journal_resource_ids, table-based? auto-add publisher
+                   :journal, # auto-suggest with crossref
                    :volume_number, # smaller, with issue
                    :issue_number, # smaller, with issue
                    :pagination, # smaller,
@@ -32,17 +33,16 @@ module Hyrax
                    :department_resource_ids, # object-based
                    :subject, # auto-suggest with FAST (removed _resource_ids)
                    :keyword,
-                   :related_url, # check for valid url
                    :funder,
                    :project_resource_ids,
                    :project_name,
-                   :project_identifier
+                   :project_identifier,
+                   :related_url, # check for valid url
     # :managing_organisation_ids # default value; object
     ]
 
-    self.required_fields = [:title]
+    self.required_fields = [:title, :publication_status, :refereed, :creator_resource_ids]
     self.required_fields -= [:creator, :keyword, :rights]
-    self.required_fields -= [:creator, :keyword]
 
   end
 end

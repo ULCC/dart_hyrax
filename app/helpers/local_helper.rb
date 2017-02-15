@@ -1,9 +1,8 @@
 # Helper for local terms
 module LocalHelper
 
-  # A Blacklight helper_method
-  # @param [Hash] options from blacklight invocation of helper_method
-  # @param [String] from blacklight facet
+  # A Local helper_method
+  # @param [String] from TODO
   # @return [String]
   def publication_status_string(value)
     if value.kind_of? String
@@ -60,6 +59,4 @@ module LocalHelper
       ERB::Util.h(ps_service.label(value))
     end
   end
-
-
 end

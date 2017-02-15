@@ -2,5 +2,4 @@
 port: 8984
 enable_jms: false
 download_dir: tmp
-persist: true
-instance_dir: tmp/fcrepo4-data
+fcrepo_home_dir: tmp/fcrepo4-data

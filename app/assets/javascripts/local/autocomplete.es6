@@ -13,6 +13,9 @@ export class Autocomplete {
                 case "funder":
                     this.autocompleteFunder(selector);
                     break;
+                case "journal":
+                    this.autocompleteFunder(selector);
+                    break;
             }
         });
     }
@@ -25,6 +28,12 @@ export class Autocomplete {
         if (/_creator_resource_ids$/.test($cloneElem.attr("id"))) {
             this.autocompleteCreator($cloneElem);
         }
+        else if (/_funder$/.test($cloneElem.attr("id"))) {
+            this.autocompleteFunder($cloneElem);
+        }
+        else if (/_journal$/.test($cloneElem.attr("id"))) {
+            this.autocompleteJournal($cloneElem);
+        }
     }
 
     autocompleteCreator(field) {
@@ -35,6 +44,11 @@ export class Autocomplete {
     autocompleteFunder(field) {
         var fnd = require('local/autocomplete/funder');
         new fnd.Funder(field, field.data('autocomplete-url'))
+    }
+
+    autocompleteJournal(field) {
+        var jnl = require('local/autocomplete/journal');
+        new jnl.Journal(field, field.data('autocomplete-url'))
     }
 
 
