@@ -21,7 +21,7 @@ en:
         refereed: "Refereed?"
     hints:
       defaults:
-        creator_resource_ids: "The person or group responsible for the work. Usually this is the author of the content. Personal names should be entered with the last name first, e.g. &quot;Smith, John.&quot;. You can also enter an ORCID for a person here, e.g. 0000-0001-6459-6227."
+        creator_resource_ids: "The person or group responsible for the work. Usually this is the author of the content. Personal names should be entered with the last name first, e.g. &quot;Smith, John.&quot;. Start typing to find an existing name, or aneter an ORCID, e.g. 0000-0001-6459-6227 we will lookup the name."
         doi: "The Digital Object Identifier (DOI) for the resource"
         language: "The language of the content being described."
         funder: "The entity responsible for funding this work."

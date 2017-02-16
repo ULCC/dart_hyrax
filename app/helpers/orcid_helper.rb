@@ -21,6 +21,7 @@ module OrcidHelper
   end
 
   def trim_orcid_url(orcid)
+    orcid.strip!
     orcids = orcid.split('/')
     orcids[orcids.length - 1]
   end
