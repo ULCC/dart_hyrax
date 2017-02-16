@@ -14,10 +14,4 @@ module LocalActorsHelper
         "Could not find #{thing}."
     )
   end
-
-  # Delete the specified attributes
-  def trim_attributes(attributes, to_remove)
-    to_remove.each { |a| attributes.delete(a) }
-    attributes
-  end
 end

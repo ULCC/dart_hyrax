@@ -15,13 +15,12 @@ module Hyrax
     self.terms += [:title,
                    :doi, # auto-populate other metadata with crossref lookup
                    :creator_resource_ids,
-                   # :orcid,
-                   # :journal_resource_ids, table-based? auto-add publisher
+                   # :orcid, # add to creator_resource_ids
                    :journal, # auto-suggest with crossref
                    :volume_number, # smaller, with issue
                    :issue_number, # smaller, with issue
                    :pagination, # smaller,
-                   :date_published, # smaller, date picker/formatter, ideally combine with next three
+                   :date_published, # TODO smaller, date picker/formatter, ideally combine with next three
                    :date_available,
                    :date_accepted,
                    :date_submitted,
@@ -31,17 +30,16 @@ module Hyrax
                    :refereed, # buttons, true, false or unknown
                    :language, # table-based
                    :department_resource_ids, # object-based
-                   :subject, # auto-suggest with FAST (removed _resource_ids)
+                   :subject, # auto-suggest with FAST
                    :keyword,
-                   :funder,
-                   :project_resource_ids,
-                   :project_name,
-                   :project_identifier,
+                   :funder, # auto-suggest with crossref
+                   :project_resource_ids, # object-based
+                   :project_name, # not stored, used to create a project object
+                   :project_identifier, # not stored, used to create a project object
                    :related_url, # check for valid url
-    # :managing_organisation_ids # default value; object
     ]
 
-    self.required_fields = [:title, :publication_status, :refereed, :creator_resource_ids]
+    self.required_fields = [:title, :publication_status, :refereed, :creator_resource_ids, :department_resource_ids]
     self.required_fields -= [:creator, :keyword, :rights]
 
   end

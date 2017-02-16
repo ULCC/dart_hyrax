@@ -76,9 +76,10 @@ module CreatorsHelper
   end
 
   # Setup a solr connection
-  # TODO change how we get the solr url, currently relies on ENV
   def setup_solr
-    RSolr.connect url: ENV['SOLR_URL_DEVELOPMENT']
+    require 'yaml'
+    solr_url = YAML.load_file("#{Rails.root}/config/solr.yml")
+    RSolr.connect url: solr_url['development']['url']
   end
 
   # Query solr for a current person with the given orcid

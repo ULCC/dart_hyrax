@@ -171,8 +171,8 @@ namespace :ulcc do
     puts 'Finished!'
   end
 
-  desc "load_orgs"
-  task load_orgs: :environment do
+  desc "load departments from csv"
+  task load_depts: :environment do
 
     path = Rails.root + 'lib/'
     # .csv files should exist in the specified path
@@ -237,6 +237,57 @@ namespace :ulcc do
 
   end
 
+  desc "load managing organisation"
+  task load_man: :environment do
+
+    require 'yaml'
+    org = YAML.load_file("#{Rails.root}/config/locales/hyrax.en.yml")['en']['hyrax']['institution_name']
+    i = 'current_organisations'
+
+    begin
+      scheme = ''
+      solr = RSolr.connect :url => SOLR
+      response = solr.get 'select', :params => {
+          :q => "preflabel_tesim:#{i} AND has_model_ssim:Dlibhydra::ConceptScheme",
+          :start => 0,
+          :rows => 10
+      }
+
+      if response["response"]["numFound"] == 0
+        puts 'Creating the Concept Scheme'
+        scheme = Dlibhydra::ConceptScheme.new
+      else
+        puts 'Retrieving the Concept Scheme'
+        scheme = Dlibhydra::ConceptScheme.find(response["response"]["docs"].first['id'])
+      end
+      scheme.preflabel = i
+      scheme.save
+      config = Rails.root + 'config/dlibhydra.yml'
+      text = File.read(config)
+      replacement_text = text.gsub(/#{i}:\s\S{2,}/, "#{i}: '#{scheme.id}'")
+      File.open(config, "w") { |file| file.puts replacement_text }
+
+      puts "Concept scheme for #{i} is #{scheme.id}"
+
+      response = solr.get 'select', :params => {
+          :q => "preflabel_tesim:#{org} AND inScheme_ssim:#{scheme.id}"
+      }
+
+      if response["response"]["numFound"] == 0
+        puts 'Creating the Organisation'
+        institution = Dlibhydra::CurrentOrganisation.new
+        institution.preflabel = org
+        institution.name = org
+        institution.concept_scheme = scheme
+        institution.save
+      end
+
+    rescue
+      puts $!
+    end
+
+  end
+
   desc "load projects"
   task load_projects: :environment do
 
@@ -297,34 +348,5 @@ namespace :ulcc do
     end
     puts 'Finished!'
   end
-
-  task orcidtest: :environment do
-
-
-  end
-
-
-  def orcid_response(id, token)
-
-
-
-  end
-
-  def connection(url)
-    conn = Faraday.new(:url => url) do |faraday|
-      faraday.request :url_encoded # form-encode POST params
-      faraday.response :logger # log requests to STDOUT
-      faraday.adapter Faraday.default_adapter # make requests with Net::HTTP
-    end
-    conn
-  end
-
-  def validate_orcid(orcid)
-
-  end
-
-
-
-
 
 end

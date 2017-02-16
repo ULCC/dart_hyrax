@@ -16,6 +16,10 @@ module LocalSolrDocument
         self[Solrizer.solr_name('creator_value')]
       end
 
+      def date
+        self[Solrizer.solr_name('date')]
+      end
+
       def department
         self[Solrizer.solr_name('department_value')]
       end
@@ -26,6 +30,10 @@ module LocalSolrDocument
 
       def project
         self[Solrizer.solr_name('project_value')]
+      end
+
+      def publisher
+        self[Solrizer.solr_name('publisher')]
       end
 
       def journal

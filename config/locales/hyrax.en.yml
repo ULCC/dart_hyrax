@@ -13,15 +13,30 @@ en:
   simple_form:
     labels:
       defaults:
-        creator_resource_ids: "Creator"
-        creator_string: "Creator"
+        creator_resource_ids: "Creators"
         doi: "DOI"
-        department_resource_ids: "Department, Research Centre or Other Unit"
+        department_resource_ids: "Department, Research Centre or other unit"
         pagination: "Pages"
-        refereed: "Refereed?"
+        refereed: "Refereed"
+        official_url: "Official URL"
+        related_url: "Related URLs"
+        funder: "Funders"
+        project_resource_ids: "Related projects"
+        subject: "Subjects"
+        keyword: "Keywords"
+
     hints:
       defaults:
+        title: "The title of the work."
         creator_resource_ids: "The person or group responsible for the work. Usually this is the author of the content. Personal names should be entered with the last name first, e.g. &quot;Smith, John.&quot;. Start typing to find an existing name, or aneter an ORCID, e.g. 0000-0001-6459-6227 we will lookup the name."
         doi: "The Digital Object Identifier (DOI) for the resource"
-        language: "The language of the content being described."
         funder: "The entity responsible for funding this work."
+        department_resource_ids: "The Department, Research Centre or other unit associated with the work."
+        pagination: "The page numbers or page range."
+        refereed: "Indicate if this item has undergone peer review."
+        official_url: "Provide a publisher's URL. Do not use for DOI."
+        related_url: "A link to a website or other specific content related to the work."
+        project_resource_ids: "Projects associated with the work. Most likely to be the project that funded the research or publication."
+        publication_status: "The publication status of the work. If this is not known, use Unpublished."
+        subject: "Subject heading describing the topic of the work. Terms are auto-suggested as you type from the Library of Congress Subject Headings."
+        keyword: "Words or phrases you select to describe what the work is about."
