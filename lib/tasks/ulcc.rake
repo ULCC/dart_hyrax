@@ -1,6 +1,7 @@
 namespace :ulcc do
 
-  SOLR = 'http://127.0.0.1:8983/solr/hydra-development'
+  # TODO change this appalling hard coding
+  SOLR = 'http://35.156.173.199:8983/solr/hyrax'
 
   desc "TODO"
   task :make_me_admin, [:email] => [:environment] do |t, args|

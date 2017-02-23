@@ -17,9 +17,10 @@ RSpec.feature 'Create a JournalArticle' do
     end
 
     scenario do
-      visit new_curation_concerns_journal_article_path
+      visit new_hyrax_journal_article_path
       fill_in 'Title', with: 'Test JournalArticle'
-      click_button 'Create JournalArticle'
+      #click_button 'Create JournalArticle'
+      click_button 'Save'
       expect(page).to have_content 'Test JournalArticle'
     end
   end

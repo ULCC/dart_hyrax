@@ -27,7 +27,7 @@
           "from_states": [
             {
               "names": [
-                "complete",
+                "deposited",
                 "pending_review"
               ],
               "roles": [
@@ -61,11 +61,11 @@
               ]
             }
           ],
-          "transition_to": "complete",
+          "transition_to": "deposited",
           "notifications": [
             {
               "notification_type": "email",
-              "name": "Hyrax::Workflow::CompleteNotification",
+              "name": "Hyrax::Workflow::DepositedNotification",
               "to": [
                 "approving"
               ]
@@ -94,6 +94,28 @@
               "name": "Hyrax::Workflow::PendingReviewNotification",
               "to": [
                 "approving"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "comment_only",
+          "from_states": [
+            {
+              "names": [
+                "pending_review",
+                "deposited"
+              ],
+              "roles": [
+                "approving"
+              ]
+            },
+            {
+              "names": [
+                "changes_required"
+              ],
+              "roles": [
+                "depositing"
               ]
             }
           ]
