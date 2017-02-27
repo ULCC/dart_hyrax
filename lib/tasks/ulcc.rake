@@ -1,9 +1,8 @@
 namespace :ulcc do
 
-  # TODO change this appalling hard coding
-  SOLR = 'http://35.156.173.199:8983/solr/hyrax'
+  SOLR = ActiveFedora::FileConfigurator.new.solr_config[:url]
 
-  desc "TODO"
+  desc "make the supplied user an administrator"
   task :make_me_admin, [:email] => [:environment] do |t, args|
 
     if args[:email].nil?
@@ -47,11 +46,16 @@ namespace :ulcc do
     # Qa::Authorities::Local.register_subauthority('funders', 'Qa::Authorities::Local::TableBasedAuthority')
   end
 
+  desc "Load all the things"
+  task load_things: :environment do
+    Rake::Task['ulcc:load_man'].invoke
+    Rake::Task['ulcc:load_projects'].invoke
+    Rake::Task['ulcc:load_persons'].invoke
+    Rake::Task['ulcc:load_depts'].invoke
+  end
+
   desc "load_terms"
   task load_terms: :environment do
-
-  SOLR = 'http://localhost:8983/solr/hydra-development'
-
 
     # path = Rails.root + 'lib/'
     # .csv files should exist in the specified path
@@ -281,6 +285,7 @@ namespace :ulcc do
         institution.name = org
         institution.concept_scheme = scheme
         institution.save
+        puts "Managing organisation is  #{institution.id}"
       end
 
     rescue

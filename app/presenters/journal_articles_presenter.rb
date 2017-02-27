@@ -7,4 +7,8 @@ class JournalArticlesPresenter < Hyrax::WorkShowPresenter
            :publication_status, :refereed, :official_url, :volume_number, :issue_number, :pagination, :doi,
            to: :solr_document
 
+  def member_presenter_factory
+    LocalMemberPresenterFactory.new(solr_document, current_ability, request)
+  end
+
 end

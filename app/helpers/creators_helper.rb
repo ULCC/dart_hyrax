@@ -77,9 +77,7 @@ module CreatorsHelper
 
   # Setup a solr connection
   def setup_solr
-    require 'yaml'
-    solr_url = YAML.load_file("#{Rails.root}/config/solr.yml")
-    RSolr.connect url: solr_url['development']['url']
+    RSolr.connect url: ActiveFedora::FileConfigurator.new.solr_config[:url]
   end
 
   # Query solr for a current person with the given orcid

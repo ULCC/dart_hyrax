@@ -18,6 +18,23 @@ module LocalHelper
     end
   end
 
+  # A Local helper_method
+  # @param [String] from TODO
+  # @return [String]
+  def content_version_string(value)
+    if value.kind_of? String
+      content_version(value)
+    elsif value.kind_of? Hash
+      begin
+        content_version(value[:document]['content_version_tesim'].first)
+      rescue
+        nil
+      end
+    else
+      ERB::Util.h(value)
+    end
+  end
+
   def refereed_string(value)
     if value.kind_of? String
       if value == 'true'
@@ -57,6 +74,20 @@ module LocalHelper
     else
       ps_service = AuthorityService::PublicationStatusesService.new
       ERB::Util.h(ps_service.label(value))
+    end
+  end
+
+  def content_version(value)
+    begin
+      parsed_uri = URI.parse(value)
+    rescue
+      nil
+    end
+    if parsed_uri.nil?
+      ERB::Util.h(value)
+    else
+      cv_service = AuthorityService::JournalArticleVersionsService.new
+      ERB::Util.h(cv_service.label(value))
     end
   end
 end

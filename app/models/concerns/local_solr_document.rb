@@ -8,6 +8,10 @@ module LocalSolrDocument
         self[Solrizer.solr_name('abstract')]
       end
 
+      def content_version
+        self[Solrizer.solr_name('content_version')]
+      end
+
       def creator
         self[Solrizer.solr_name('creator')]
       end

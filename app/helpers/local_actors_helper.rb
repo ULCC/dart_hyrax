@@ -5,6 +5,7 @@ module LocalActorsHelper
     Dlibhydra::ConceptScheme.find(DLIBHYDRA[scheme])
   rescue
     Rails.logger.error("Could not find the concept scheme for #{scheme}.")
+    return nil
   end
 
   def find_base(thing)

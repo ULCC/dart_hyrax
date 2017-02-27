@@ -45,7 +45,7 @@ class CatalogController < ApplicationController
             "subject_tesim " +
             "keyword_tesim " +
             "funder_tesim " +
-            "project_value_tesim "
+            "project_value_tesim"
         # TODO add more
     }
 
@@ -114,6 +114,7 @@ class CatalogController < ApplicationController
     config.add_index_field solr_name("journal", :stored_searchable), label: "Journal", itemprop: 'journal', link_to_search: solr_name("journal", :facetable)
     config.add_index_field solr_name("funder", :stored_searchable), label: "Funder", itemprop: 'funder', link_to_search: solr_name("funder", :facetable)
     config.add_index_field solr_name("language", :stored_searchable), label: "Language", itemprop: 'inLanguage', link_to_search: solr_name("language", :facetable)
+    config.add_index_field solr_name("content_version", :stored_searchable), itemprop: 'version', link_to_search: solr_name("content_version", :facetable)
 
     # solr fields to be displayed in the show (single result) view
     #   The ordering of the field names is the order of the display

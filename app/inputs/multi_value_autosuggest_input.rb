@@ -5,6 +5,8 @@ class MultiValueAutosuggestInput < MultiValueInput
 
   private
 
+  # translate the id into the label
+  # use for cases where we can reliably get the id from the label (ie. local authorities)
   def build_field(value, index)
     options = build_field_options(value, index)
     cp_service = AuthorityService::CurrentPersonService.new
