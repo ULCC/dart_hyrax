@@ -1,5 +1,9 @@
-depositor: 'julie.allinson@london.ac.uk'
-current_persons: 'wp988j80x'
-departments: 'h702q636h'
-projects: '2514nk481'
-current_organisations: 'sf268508b'
+depositor: "depositor@example.com"
+# authorities
+projects: '3x816m604'
+journals: ""
+subjects: ""
+current_organisations: '1z40ks800'
+current_persons: 'v979v304g'
+qualification_names: ""
+departments: 'j3860692c'

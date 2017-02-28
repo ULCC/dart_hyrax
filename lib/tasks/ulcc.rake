@@ -2,7 +2,7 @@ namespace :ulcc do
 
   SOLR = ActiveFedora::FileConfigurator.new.solr_config[:url]
 
-  desc "make the supplied user an administrator"
+  desc "Make the supplied user an administrator"
   task :make_me_admin, [:email] => [:environment] do |t, args|
 
     if args[:email].nil?
@@ -28,7 +28,7 @@ namespace :ulcc do
     end
   end
 
-  desc "Deletes any unused Hydra::AccessControl objects"
+  desc "Delete any unused Hydra::AccessControl objects"
   task cleanup_accesscontrol: :environment do
     Hydra::AccessControl.all.each do | access_control|
       if access_control.contains == []
@@ -38,7 +38,7 @@ namespace :ulcc do
     end
   end
 
-  desc "Load fundref data into database"
+  #desc "Load fundref data into database"
   task load_fundref: :environment do
     require 'hyrax/controlled_vocabulary/importer/funder'
     Hyrax::ControlledVocabulary::Importer::Funder.new.import
@@ -54,7 +54,7 @@ namespace :ulcc do
     Rake::Task['ulcc:load_depts'].invoke
   end
 
-  desc "load_terms"
+  desc "INCOMPLETE. Setup the concept scheme and load terms for an array of authorities"
   task load_terms: :environment do
 
     # path = Rails.root + 'lib/'
@@ -115,12 +115,9 @@ namespace :ulcc do
     puts 'Finished!'
   end
 
-  desc "load persons"
+  desc "Setup the concept scheme for current_persons"
   task load_persons: :environment do
 
-    # path = Rails.root + 'lib/'
-    # .csv files should exist in the specified path
-    # filename will be the name of the concept scheme
     list = ['current_persons']
     list.each do |i|
 
@@ -151,36 +148,18 @@ namespace :ulcc do
       rescue
         puts $!
       end
-
-      # puts 'Processing ' + i
-      #
-      # arr = CSV.read(path + "assets/lists/#{i}.csv")
-      # arr = arr.uniq # remove any duplicates
-      #
-      # arr.each do |c|
-      #   begin
-      #     h = Dlibhydra::Concept.new
-      #     h.preflabel = c[0].strip
-      #     h.altlabel = [c[2].strip] unless c[2].nil?
-      #     h.same_as = [c[1].strip] unless c[1].nil?
-      #     h.concept_scheme = scheme
-      #     h.save
-      #     scheme.concepts << h
-      #     scheme.save
-      #     puts "Term for #{c[0]} created at #{h.id}"
-      #   rescue
-      #     puts $!
-      #   end
-      # end
     end
     puts 'Finished!'
   end
 
-  desc "load departments from csv"
+  desc "Setup the concept scheme and load departments from csv"
   task load_depts: :environment do
 
     path = Rails.root + 'lib/'
-    # .csv files should exist in the specified path
+    # lib/assets/lists/departments.csv file should contain
+    # column 1: prefLabel [required]
+    # column 2: sameAs [optional]
+    # column 3: altLabel [optional]
     # filename will be the name of the concept scheme
     list = ['departments']
     list.each do |i|
@@ -221,7 +200,7 @@ namespace :ulcc do
       arr.each do |c|
         begin
           response = solr.get 'select', :params => {
-              :q => "preflabel_tesim:#{c[0].strip} AND inScheme_ssim:#{scheme.id}"
+              :q => "preflabel_tesim:\"#{c[0].strip}\" AND inScheme_ssim:#{scheme.id}"
           }
 
           if response["response"]["numFound"] == 0
@@ -237,8 +216,8 @@ namespace :ulcc do
               scheme.departments << h
             end
             scheme.save
+            puts "Term for #{c[0]} created at #{h.id}"
           end
-          puts "Term for #{c[0]} created at #{h.id}"
         rescue
           puts $!
         end
@@ -248,7 +227,7 @@ namespace :ulcc do
 
   end
 
-  desc "load managing organisation"
+  desc "Setup the concept scheme for current_organisations and load managing organisation"
   task load_man: :environment do
 
     require 'yaml'
@@ -281,7 +260,7 @@ namespace :ulcc do
       puts "Concept scheme for #{i} is #{scheme.id}"
 
       response = solr.get 'select', :params => {
-          :q => "preflabel_tesim:#{org} AND inScheme_ssim:#{scheme.id}"
+          :q => "preflabel_tesim:\"#{org}\" AND inScheme_ssim:#{scheme.id}"
       }
 
       if response["response"]["numFound"] == 0
@@ -291,7 +270,7 @@ namespace :ulcc do
         institution.name = org
         institution.concept_scheme = scheme
         institution.save
-        puts "Managing organisation is  #{institution.id}"
+        puts "Managing organisation is #{institution.id}"
       end
 
     rescue
@@ -300,12 +279,9 @@ namespace :ulcc do
 
   end
 
-  desc "load projects"
+  desc "Setup the concept scheme for projects"
   task load_projects: :environment do
 
-    # path = Rails.root + 'lib/'
-    # .csv files should exist in the specified path
-    # filename will be the name of the concept scheme
     list = ['projects']
     list.each do |i|
 
@@ -336,27 +312,6 @@ namespace :ulcc do
       rescue
         puts $!
       end
-
-      # puts 'Processing ' + i
-      #
-      # arr = CSV.read(path + "assets/lists/#{i}.csv")
-      # arr = arr.uniq # remove any duplicates
-      #
-      # arr.each do |c|
-      #   begin
-      #     h = Dlibhydra::Concept.new
-      #     h.preflabel = c[0].strip
-      #     h.altlabel = [c[2].strip] unless c[2].nil?
-      #     h.same_as = [c[1].strip] unless c[1].nil?
-      #     h.concept_scheme = scheme
-      #     h.save
-      #     scheme.concepts << h
-      #     scheme.save
-      #     puts "Term for #{c[0]} created at #{h.id}"
-      #   rescue
-      #     puts $!
-      #   end
-      # end
     end
     puts 'Finished!'
   end
