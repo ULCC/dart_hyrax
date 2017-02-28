@@ -46,6 +46,7 @@
             }
           ],
           "methods": [
+            "Hyrax::Workflow::GrantEditToDepositor",
             "Hyrax::Workflow::DeactivateObject"
           ]
         },
@@ -72,6 +73,7 @@
             }
           ],
           "methods": [
+            //"Workflow::RevokeEditFromDepositor",
             "Hyrax::Workflow::ActivateObject"
           ]
         },

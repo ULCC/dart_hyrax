@@ -11,7 +11,7 @@
         <strong>content version: </strong>
         <%= content_version_string(member.try(:content_version)) %>
     <% end %>
-    <% if member.try(:rights) %>
+    <% unless member.try(:rights).blank? %>
         <br/>
         <strong>license: </strong>
         <%= member.try(:rights).first %>

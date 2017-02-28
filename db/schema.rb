@@ -177,6 +177,7 @@ ActiveRecord::Schema.define(version: 20170131142607) do
   end
 
   create_table "permission_templates", force: :cascade do |t|
+    t.integer  "workflow_id"
     t.string   "admin_set_id"
     t.string   "visibility"
     t.datetime "created_at"

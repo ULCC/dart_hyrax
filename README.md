@@ -30,10 +30,15 @@ Load languages from lexvo:
 
 rake hyrax:controlled_vocabularies:language
 
-Setup for current persons authority:
+Setup for authorities
 
-rake ulcc:load_persons
+rake ulcc:load
 
-Load departments authority (with test data):
+Hyrax::PermissionTemplate # not being created so manually created 
+(Hyrax::PermissionTemplate.new with admin_set/default)
+Sipity::Workflow # not always loading - loads once the above is manually created (I think)
+- manually set workflow active to true
 
-rake ulcc:load_orgs
+this lot is driving me mad
+
+Couldn't find Sipity::Workflow with [WHERE "sipity_workflows"."active" = ? AND "sipity_workflows"."permission_template_id" IN (SELECT "permission_templates"."id" FROM "permission_templates" WHERE "permission_templates"."admin_set_id" = 'admin_set/default')]

@@ -47,7 +47,7 @@ namespace :ulcc do
   end
 
   desc "Load all the things"
-  task load_things: :environment do
+  task load: :environment do
     Rake::Task['ulcc:load_man'].invoke
     Rake::Task['ulcc:load_projects'].invoke
     Rake::Task['ulcc:load_persons'].invoke
@@ -220,18 +220,24 @@ namespace :ulcc do
 
       arr.each do |c|
         begin
-          h = Dlibhydra::CurrentOrganisation.new
-          h.preflabel = c[0].strip
-          h.name = c[0].strip
-          h.altlabel = [c[2].strip] unless c[2].nil?
-          h.same_as = [c[1].strip] unless c[1].nil?
-          h.concept_scheme = scheme
-          h.save
-          scheme.current_organisations << h
-          if i == 'departments'
-            scheme.departments << h
+          response = solr.get 'select', :params => {
+              :q => "preflabel_tesim:#{c[0].strip} AND inScheme_ssim:#{scheme.id}"
+          }
+
+          if response["response"]["numFound"] == 0
+            h = Dlibhydra::CurrentOrganisation.new
+            h.preflabel = c[0].strip
+            h.name = c[0].strip
+            h.altlabel = [c[2].strip] unless c[2].nil?
+            h.same_as = [c[1].strip] unless c[1].nil?
+            h.concept_scheme = scheme
+            h.save
+            scheme.current_organisations << h
+            if i == 'departments'
+              scheme.departments << h
+            end
+            scheme.save
           end
-          scheme.save
           puts "Term for #{c[0]} created at #{h.id}"
         rescue
           puts $!
