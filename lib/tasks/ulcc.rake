@@ -115,10 +115,10 @@ namespace :ulcc do
     puts 'Finished!'
   end
 
-  desc "Setup the concept scheme for current_persons"
+  desc "Setup the concept scheme for current_people"
   task load_persons: :environment do
 
-    list = ['current_persons']
+    list = ['current_people']
     list.each do |i|
 
       begin

@@ -39,14 +39,14 @@ module CreatorsHelper
   def create_person(value)
     person = Dlibhydra::CurrentPerson.new
     person.preflabel = value
-    person.concept_scheme = find_concept_scheme('current_persons')
+    person.concept_scheme = find_concept_scheme('current_people')
     return person unless person.preflabel.blank?
   end
 
   # Add data from ORCID to CurrentPerson object
   def create_person_from_orcid(creator)
     person = Dlibhydra::CurrentPerson.new
-    person.concept_scheme = find_concept_scheme('current_persons')
+    person.concept_scheme = find_concept_scheme('current_people')
     bio = orcid_response(trim_orcid_url(creator))
     person.orcid = [trim_orcid_url(creator)]
     return add_orcid_details(person, bio) unless bio.blank?
@@ -69,7 +69,7 @@ module CreatorsHelper
   def find_orcid(person_orcid)
     response = query_solr_for_orcid(
         person_orcid,
-        DLIBHYDRA['current_persons']
+        DLIBHYDRA['current_people']
     )
     numfound = response['response']['numFound']
     return find_base(response['response']['docs'][0]['id']) unless numfound == 0
