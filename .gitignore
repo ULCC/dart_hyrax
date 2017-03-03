@@ -24,6 +24,7 @@
 .env
 
 # Ignore .vagrant
+<<<<<<< HEAD
 /provision/.vagrant
 
 # Ignore gemfile.lock

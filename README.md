@@ -23,6 +23,7 @@ JournalArticle has been  heavily customised, as documented below
 
 ## Getting started
 
+<<<<<<< HEAD
 Make sure the pre-requisites are installed: https://github.com/projecthydra-labs/hyrax
 
 Add a .env file, see .env_template for what needs to go in it
@@ -285,3 +286,6 @@ Sipity::Workflow # not always loading * loads once the above is manually created
 * manually set workflow active to t
 
 this lot is driving me a bit mad
+=======
+* ...
+
