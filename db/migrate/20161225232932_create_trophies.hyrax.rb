@@ -1,4 +1,4 @@
-# This migration comes from hyrax (originally 20160328222161)
+# This migration comes from local (originally 20160328222161)
 class CreateTrophies < ActiveRecord::Migration
   def change
     create_table :trophies do |t|

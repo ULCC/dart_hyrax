@@ -1,5 +1,5 @@
 # Generated via
-#  `rails generate hyrax:work Book`
+#  `rails generate local:work Book`
 require 'rails_helper'
 include Warden::Test::Helpers
 
@@ -17,9 +17,10 @@ RSpec.feature 'Create a Book' do
     end
 
     scenario do
-      visit new_curation_concerns_book_path
+      visit new_hyrax_book_path
       fill_in 'Title', with: 'Test Book'
-      click_button 'Create Book'
+      #click_button 'Create Book'
+      click_button 'Save'
       expect(page).to have_content 'Test Book'
     end
   end

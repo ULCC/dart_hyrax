@@ -1,4 +1,4 @@
-# This migration comes from hyrax (originally 20160415212015)
+# This migration comes from local (originally 20160415212015)
 class CreateFeatures < ActiveRecord::Migration
   def change
     create_table :hyrax_features do |t|

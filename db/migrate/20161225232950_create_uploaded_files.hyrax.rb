@@ -1,4 +1,4 @@
-# This migration comes from hyrax (originally 20160401142419)
+# This migration comes from local (originally 20160401142419)
 class CreateUploadedFiles < ActiveRecord::Migration
   def change
     create_table :uploaded_files do |t|

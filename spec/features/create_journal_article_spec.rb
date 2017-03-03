@@ -1,5 +1,5 @@
 # Generated via
-#  `rails generate hyrax:work JournalArticle`
+#  `rails generate local:work JournalArticle`
 require 'rails_helper'
 include Warden::Test::Helpers
 
@@ -17,9 +17,10 @@ RSpec.feature 'Create a JournalArticle' do
     end
 
     scenario do
-      visit new_curation_concerns_journal_article_path
+      visit new_hyrax_journal_article_path
       fill_in 'Title', with: 'Test JournalArticle'
-      click_button 'Create JournalArticle'
+      #click_button 'Create JournalArticle'
+      click_button 'Save'
       expect(page).to have_content 'Test JournalArticle'
     end
   end

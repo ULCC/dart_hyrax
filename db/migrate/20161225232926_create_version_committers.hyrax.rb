@@ -1,4 +1,4 @@
-# This migration comes from hyrax (originally 20160328222152)
+# This migration comes from local (originally 20160328222152)
 class CreateVersionCommitters < ActiveRecord::Migration
   def self.up
     create_table :version_committers do |t|

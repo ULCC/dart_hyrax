@@ -1,4 +1,4 @@
-# This migration comes from hyrax (originally 20160328222164)
+# This migration comes from local (originally 20160328222164)
 class CreateContentBlocks < ActiveRecord::Migration
   def change
     create_table :content_blocks do |t|

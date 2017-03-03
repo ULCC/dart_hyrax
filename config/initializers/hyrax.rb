@@ -1,9 +1,9 @@
 Hyrax.config do |config|
-  # Injected via `rails g hyrax:work Book`
+  # Injected via `rails g local:work Book`
   config.register_curation_concern :book
-  # Injected via `rails g hyrax:work JournalArticle`
+  # Injected via `rails g local:work JournalArticle`
   config.register_curation_concern :journal_article
-  # Email recipient of messages sent via the contact form
+    # Email recipient of messages sent via the contact form
   # config.contact_email = "repo-admin@example.org"
 
   # Text prefacing the subject entered in the contact form
@@ -50,11 +50,11 @@ Hyrax.config do |config|
   # config.minter_statefile = '/tmp/minter-state'
 
   # Specify the prefix for Redis keys:
-  # config.redis_namespace = "hyrax"
+  # config.redis_namespace = "local"
 
   # Specify the path to the file characterization tool:
   # config.fits_path = "fits.sh"
-  config.fits_path = "#{ENV['FITS_PATH']}/fits.sh"
+  config.fits_path = "#{ENV['FITS_PATH']}/fits.sh" || "fits.sh"
 
   # Specify the path to the file derivatives creation tool:
   # config.libreoffice_path = "soffice"

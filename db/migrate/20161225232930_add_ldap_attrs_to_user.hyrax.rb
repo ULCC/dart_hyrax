@@ -1,4 +1,4 @@
-# This migration comes from hyrax (originally 20160328222157)
+# This migration comes from local (originally 20160328222157)
 class AddLdapAttrsToUser < ActiveRecord::Migration
   def self.up
     add_column :users, :display_name, :string

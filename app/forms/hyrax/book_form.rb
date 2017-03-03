@@ -1,5 +1,5 @@
 # Generated via
-#  `rails generate hyrax:work Book`
+#  `rails generate local:work Book`
 module Hyrax
   class BookForm < Hyrax::Forms::WorkForm
     self.model_class = ::Book

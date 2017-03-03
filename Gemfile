@@ -7,7 +7,9 @@ end
 
 # Local gems
 gem 'dotenv-rails'
-
+gem 'hydra-role-management'
+gem 'dlibhydra', :git => 'https://github.com/geekscruff/dlibhydra.git', branch: 'hyrax_jal'
+gem 'qa', :git => 'https://github.com/geekscruff/questioning_authority.git', branch: 'crossref'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.1'
@@ -55,8 +57,8 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-gem 'hyrax', '0.0.1.alpha', github: 'projecthydra-labs/hyrax'
-gem 'flipflop', github: 'jcoyne/flipflop', branch: 'hydra'
+gem 'hyrax', '1.0.0.alpha', github: 'projecthydra-labs/hyrax'
+gem 'flipflop', git: 'https://github.com/voormedia/flipflop.git', ref: 'e2f3e3d'
 group :development, :test do
   gem 'solr_wrapper', '>= 0.3'
 end
@@ -64,7 +66,24 @@ end
 gem 'rsolr', '~> 1.0'
 gem 'devise'
 gem 'devise-guests', '~> 0.5'
+
 group :development, :test do
   gem 'fcrepo_wrapper'
   gem 'rspec-rails'
+  gem 'rspec'
+
+  gem 'coveralls', require: false
+  gem 'simplecov', require: false
+
+  gem 'rubocop', '~> 0.47.0'
+  gem 'rubocop-rspec', '~> 1.10.0'
+  gem 'capybara'
+  gem 'factory_girl_rails'
+  gem 'rails-controller-testing'
+  gem 'webmock'
+end
+
+group :development do
+  # for when running on windows
+  gem 'wdm', '>= 0.1.0' if Gem.win_platform?
 end

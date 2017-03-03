@@ -5,4 +5,14 @@ en:
     select_type:
       journal_article:
         name:               "Journal Article"
-        description:        "Journal article works"
+        description:        "Journal articles"
+  simple_form:
+    hints:
+      defaults:
+        volume_number: "The journal volume that this work was published in."
+        issue_number: "The journal issue that this work was published in."
+        date_published: "The date that this work was officially published."
+        date_available: "The date that this work was made available, if this is different to the Date Published. This may be an early online date."
+        date_submitted: "The date that this work was submitted to the journal."
+        date_accepted: "The date on which the output was formally accepted by the publisher."
+        journal: "The title of the journal that this work was published in."

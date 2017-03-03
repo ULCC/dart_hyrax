@@ -1,0 +1,2 @@
+port: 8986
+enable_jms: false

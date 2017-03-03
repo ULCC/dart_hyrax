@@ -1,4 +1,4 @@
-# This migration comes from hyrax (originally 20160328222156)
+# This migration comes from local (originally 20160328222156)
 class AddSocialToUsers < ActiveRecord::Migration
   def self.up
     add_column :users, :facebook_handle, :string

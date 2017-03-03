@@ -1,4 +1,4 @@
-# This migration comes from hyrax (originally 20161116222307)
+# This migration comes from local (originally 20161116222307)
 class AddReleaseToPermissionTemplates < ActiveRecord::Migration
   def change
     add_column :permission_templates, :release_date, :date

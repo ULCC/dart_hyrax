@@ -1,5 +1,5 @@
 # Generated via
-#  `rails generate hyrax:work JournalArticle`
+#  `rails generate local:work JournalArticle`
 
 module Hyrax
   class JournalArticlesController < ApplicationController
@@ -7,5 +7,7 @@ module Hyrax
     include Hyrax::WorksControllerBehavior
     include Hyrax::BreadcrumbsForWorks
     self.curation_concern_type = JournalArticle
+    self.show_presenter = JournalArticlesPresenter
+
   end
 end

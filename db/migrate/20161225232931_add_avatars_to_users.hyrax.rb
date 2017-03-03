@@ -1,4 +1,4 @@
-# This migration comes from hyrax (originally 20160328222158)
+# This migration comes from local (originally 20160328222158)
 class AddAvatarsToUsers < ActiveRecord::Migration
   def self.up
     add_column :users, "avatar_file_name",    :string

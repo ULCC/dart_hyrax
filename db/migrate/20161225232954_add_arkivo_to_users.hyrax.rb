@@ -1,4 +1,4 @@
-# This migration comes from hyrax (originally 20160516190435)
+# This migration comes from local (originally 20160516190435)
 class AddArkivoToUsers < ActiveRecord::Migration
   def change
     add_column :users, :arkivo_token, :string

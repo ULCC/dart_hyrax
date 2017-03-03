@@ -1,9 +1,7 @@
 development:
+  # add roles for users here.
   admin:
-    - julie.allinson@london.ac.uk
-  archivist:
-    - archivist1@example.com
-
+    - admin@example.com
 test:
   archivist:
     - archivist1@example.com
