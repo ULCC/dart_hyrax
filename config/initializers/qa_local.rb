@@ -1,4 +1,5 @@
 # include Terms
+Qa::Authorities::Local.register_subauthority('current_persons', 'Dlibhydra::Terms::CurrentPersonTerms')
 Qa::Authorities::Local.register_subauthority('projects', 'Dlibhydra::Terms::ProjectTerms')
 Qa::Authorities::Local.register_subauthority('journals', 'Dlibhydra::Terms::JournalTerms')
 Qa::Authorities::Local.register_subauthority('subjects', 'Dlibhydra::Terms::SubjectTerms')

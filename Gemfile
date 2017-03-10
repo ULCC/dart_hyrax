@@ -5,6 +5,9 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+# Remove once fix is in hyrax
+gem 'blacklight', '6.7.3'
+
 # Local gems
 gem 'dotenv-rails'
 gem 'hydra-role-management'
@@ -58,7 +61,6 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'hyrax', '1.0.0.alpha', github: 'projecthydra-labs/hyrax'
-gem 'flipflop' #, git: 'https://github.com/voormedia/flipflop.git', ref: 'e2f3e3d'
 group :development, :test do
   gem 'solr_wrapper', '>= 0.3'
 end
@@ -86,10 +88,4 @@ end
 group :development do
   # for when running on windows
   gem 'wdm', '>= 0.1.0' if Gem.win_platform?
-end
-
-group :development, :test do
-end
-
-group :development, :test do
 end
