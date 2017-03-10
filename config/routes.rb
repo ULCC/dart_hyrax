@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   
   mount Blacklight::Engine => '/'
   
@@ -9,12 +10,10 @@ Rails.application.routes.draw do
   end
 
   devise_for :users
-  mount Hydra::RoleManagement::Engine => '/'
-
   mount Qa::Engine => '/authorities'
   mount Hyrax::Engine, at: '/'
   resources :welcome, only: 'index'
-  root 'local/homepage#index'
+  root 'hyrax/homepage#index'
   curation_concerns_basic_routes
   curation_concerns_embargo_management
   concern :exportable, Blacklight::Routes::Exportable.new
@@ -31,5 +30,4 @@ Rails.application.routes.draw do
     end
   end
 
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

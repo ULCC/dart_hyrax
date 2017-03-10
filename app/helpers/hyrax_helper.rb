@@ -3,5 +3,4 @@ module HyraxHelper
   include Hyrax::BlacklightOverride
   include Hyrax::HyraxHelperBehavior
   include LocalHelper
-
 end
