@@ -1,11 +1,10 @@
 # frozen_string_literal: true
 class SolrDocument
   include Blacklight::Solr::Document
-  include Blacklight::Gallery::OpenseadragonSolrDocument
-  include LocalSolrDocument
-
   # Adds Hyrax behaviors to the SolrDocument.
   include Hyrax::SolrDocumentBehavior
+
+  include LocalSolrDocument
 
   # self.unique_key = 'id'
 
