@@ -1,4 +1,5 @@
 Hyrax.config do |config|
+
   # Injected via `rails g local:work Book`
   config.register_curation_concern :book
   # Injected via `rails g local:work JournalArticle`

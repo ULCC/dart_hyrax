@@ -89,3 +89,12 @@ group :development do
   # for when running on windows
   gem 'wdm', '>= 0.1.0' if Gem.win_platform?
 end
+
+group :development, :test do
+end
+
+group :development, :test do
+end
+
+group :development, :test do
+end

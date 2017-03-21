@@ -5,6 +5,11 @@ class SolrDocument
 
   # Adds Hyrax behaviors to the SolrDocument.
   include Hyrax::SolrDocumentBehavior
+
+  include Blacklight::Gallery::OpenseadragonSolrDocument
+
+  # Adds Hyrax behaviors to the SolrDocument.
+  include Hyrax::SolrDocumentBehavior
   include LocalSolrDocument
 
   # self.unique_key = 'id'
@@ -23,6 +28,10 @@ class SolrDocument
   use_extension(Blacklight::Document::DublinCore)
 
   # Do content negotiation for AF models.
+
+  use_extension(Hydra::ContentNegotiation)
+
+  # Do content negotiation for AF models. 
 
   use_extension( Hydra::ContentNegotiation )
 end

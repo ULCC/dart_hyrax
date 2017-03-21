@@ -22,8 +22,16 @@ module HyraxJal
     end
 
 
-    
-    config.generators do |g|
+      # The compile method (default in tinymce-rails 4.5.2) doesn't work when also
+      # using tinymce-rails-imageupload, so revert to the :copy method
+      # https://github.com/spohlenz/tinymce-rails/issues/183
+      config.tinymce.install = :copy
+      config.generators do |g|
+        g.test_framework :rspec, :spec => true
+      end
+
+
+      config.generators do |g|
       g.test_framework :rspec, :spec => true
     end
 

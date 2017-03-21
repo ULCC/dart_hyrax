@@ -16,9 +16,6 @@ module AuthorityService
 	class CurrentPersonService < Dlibhydra::Terms::CurrentPersonTerms
 		include ::LocalAuthorityConcern
 	end
-	class QualificationNameService < Dlibhydra::Terms::QualificationNameTerms
-		include ::LocalAuthorityConcern
-	end
 	class DepartmentService < Dlibhydra::Terms::DepartmentTerms
 		include ::LocalAuthorityConcern
 	end
@@ -36,6 +33,13 @@ module AuthorityService
 			super('resource_types')
 		end
 	end
+  class QualificationNamesService < Hyrax::QaSelectService
+    include ::FileAuthorityConcern
+
+    def initialize
+      super('qualification_names')
+    end
+  end
 	class QualificationLevelsService < Hyrax::QaSelectService
 	include ::FileAuthorityConcern
 		def initialize
