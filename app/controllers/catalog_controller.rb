@@ -25,9 +25,26 @@ class CatalogController < ApplicationController
     # config.response_model = Blacklight::Solr::Response
 
     ## Default parameters to send to solr for all search-like requests. See also SearchBuilder#processed_parameters
+    ## Default parameters to send to solr for all search-like requests. See also SolrHelper#solr_search_params
     config.default_solr_params = {
-        qt: 'search',
-        rows: 10
+        qt: "search",
+        rows: 10,
+        qf: "title_tesim " +
+            "doi_tesim " +
+            "creator_tesim" +
+            "creator_value_tesim " +
+            "journal_tesim " +
+            "date_tesim " +
+            "abstract_tesim " +
+            "publication_status_tesim " +
+            "refereed_tesim " +
+            "language_tesim " +
+            "department_value_tesim " +
+            "subject_tesim " +
+            "keyword_tesim " +
+            "funder_tesim " +
+            "project_value_tesim"
+        # TODO add more
     }
 
     # solr field configuration for search results/index views
@@ -54,13 +71,35 @@ class CatalogController < ApplicationController
     #
     # :show may be set to false if you don't want the facet to be drawn in the
     # facet bar
-    config.add_facet_field solr_name('object_type', :facetable), label: 'Format'
-    config.add_facet_field solr_name('pub_date', :facetable), label: 'Publication Year'
-    config.add_facet_field solr_name('subject_topic', :facetable), label: 'Topic', limit: 20
-    config.add_facet_field solr_name('language', :facetable), label: 'Language', limit: true
-    config.add_facet_field solr_name('lc1_letter', :facetable), label: 'Call Number'
-    config.add_facet_field solr_name('subject_geo', :facetable), label: 'Region'
-    config.add_facet_field solr_name('subject_era', :facetable), label: 'Era'
+    # config.add_facet_field solr_name('object_type', :facetable), label: 'Format'
+    # config.add_facet_field solr_name('pub_date', :facetable), label: 'Publication Year'
+    # config.add_facet_field solr_name('subject_topic', :facetable), label: 'Topic', limit: 20
+    # config.add_facet_field solr_name('language', :facetable), label: 'Language', limit: true
+    # config.add_facet_field solr_name('lc1_letter', :facetable), label: 'Call Number'
+    # config.add_facet_field solr_name('subject_geo', :facetable), label: 'Region'
+    # config.add_facet_field solr_name('subject_era', :facetable), label: 'Era'
+
+    #   The ordering of the field names is the order of the display
+    config.add_facet_field solr_name("human_readable_type", :facetable), label: "Type", limit: 5
+    config.add_facet_field solr_name("resource_type", :facetable), label: "Resource Type", limit: 5
+    #config.add_facet_field solr_name("creator", :facetable), label: "Creator", limit: 5
+    config.add_facet_field solr_name("contributor", :facetable), label: "Contributor", limit: 5
+    config.add_facet_field solr_name("keyword", :facetable), label: "Keyword", limit: 5
+    config.add_facet_field solr_name("subject", :facetable), label: "Subject", limit: 5
+    config.add_facet_field solr_name("language", :facetable), label: "Language", limit: 5
+    config.add_facet_field solr_name("based_near", :facetable), label: "Location", limit: 5
+    config.add_facet_field solr_name("publisher", :facetable), label: "Publisher", limit: 5
+    config.add_facet_field solr_name("file_format", :facetable), label: "File Format", limit: 5
+    config.add_facet_field solr_name('member_of_collections', :symbol), limit: 5, label: 'Collections'
+
+    # Journal Article
+    config.add_facet_field solr_name("department_value", :facetable), label: "Department, Research Centre or other unit"
+    config.add_facet_field solr_name("date", :facetable), label: "Dates"
+    config.add_facet_field solr_name("refereed", :facetable), label: "Refereed", helper_method: :refereed_string
+    config.add_facet_field solr_name("publication_status", :facetable), label: "Publication Status", helper_method: :publication_status_string
+    config.add_facet_field solr_name("creator_value", :facetable), label: "Creator", limit: 5
+    config.add_facet_field solr_name("funder", :facetable), label: "Funder", limit: 5
+    config.add_facet_field solr_name("project_value", :facetable), label: "Project", limit: 5
 
     # Have BL send all facet field names to Solr, which has been the default
     # previously. Simply remove these lines if you'd rather use Solr request
@@ -72,32 +111,106 @@ class CatalogController < ApplicationController
 
     # solr fields to be displayed in the index (search results) view
     #   The ordering of the field names is the order of the display
-    config.add_index_field solr_name('title', :stored_searchable, type: :string), label: 'Title'
-    config.add_index_field solr_name('title_vern', :stored_searchable, type: :string), label: 'Title'
-    config.add_index_field solr_name('author', :stored_searchable, type: :string), label: 'Author'
-    config.add_index_field solr_name('author_vern', :stored_searchable, type: :string), label: 'Author'
-    config.add_index_field solr_name('format', :symbol), label: 'Format'
-    config.add_index_field solr_name('language', :stored_searchable, type: :string), label: 'Language'
-    config.add_index_field solr_name('published', :stored_searchable, type: :string), label: 'Published'
-    config.add_index_field solr_name('published_vern', :stored_searchable, type: :string), label: 'Published'
-    config.add_index_field solr_name('lc_callnum', :stored_searchable, type: :string), label: 'Call number'
+    # config.add_index_field solr_name('title', :stored_searchable, type: :string), label: 'Title'
+    # config.add_index_field solr_name('title_vern', :stored_searchable, type: :string), label: 'Title'
+    # config.add_index_field solr_name('author', :stored_searchable, type: :string), label: 'Author'
+    # config.add_index_field solr_name('author_vern', :stored_searchable, type: :string), label: 'Author'
+    # config.add_index_field solr_name('format', :symbol), label: 'Format'
+    # config.add_index_field solr_name('language', :stored_searchable, type: :string), label: 'Language'
+    # config.add_index_field solr_name('published', :stored_searchable, type: :string), label: 'Published'
+    # config.add_index_field solr_name('published_vern', :stored_searchable, type: :string), label: 'Published'
+    # config.add_index_field solr_name('lc_callnum', :stored_searchable, type: :string), label: 'Call number'
 
     # solr fields to be displayed in the show (single result) view
     #   The ordering of the field names is the order of the display
-    config.add_show_field solr_name('title', :stored_searchable, type: :string), label: 'Title'
-    config.add_show_field solr_name('title_vern', :stored_searchable, type: :string), label: 'Title'
-    config.add_show_field solr_name('subtitle', :stored_searchable, type: :string), label: 'Subtitle'
-    config.add_show_field solr_name('subtitle_vern', :stored_searchable, type: :string), label: 'Subtitle'
-    config.add_show_field solr_name('author', :stored_searchable, type: :string), label: 'Author'
-    config.add_show_field solr_name('author_vern', :stored_searchable, type: :string), label: 'Author'
-    config.add_show_field solr_name('format', :symbol), label: 'Format'
-    config.add_show_field solr_name('url_fulltext_tsim', :stored_searchable, type: :string), label: 'URL'
-    config.add_show_field solr_name('url_suppl_tsim', :stored_searchable, type: :string), label: 'More Information'
-    config.add_show_field solr_name('language', :stored_searchable, type: :string), label: 'Language'
-    config.add_show_field solr_name('published', :stored_searchable, type: :string), label: 'Published'
-    config.add_show_field solr_name('published_vern', :stored_searchable, type: :string), label: 'Published'
-    config.add_show_field solr_name('lc_callnum', :stored_searchable, type: :string), label: 'Call number'
-    config.add_show_field solr_name('isbn', :stored_searchable, type: :string), label: 'ISBN'
+    # config.add_show_field solr_name('title', :stored_searchable, type: :string), label: 'Title'
+    # config.add_show_field solr_name('title_vern', :stored_searchable, type: :string), label: 'Title'
+    # config.add_show_field solr_name('subtitle', :stored_searchable, type: :string), label: 'Subtitle'
+    # config.add_show_field solr_name('subtitle_vern', :stored_searchable, type: :string), label: 'Subtitle'
+    # config.add_show_field solr_name('author', :stored_searchable, type: :string), label: 'Author'
+    # config.add_show_field solr_name('author_vern', :stored_searchable, type: :string), label: 'Author'
+    # config.add_show_field solr_name('format', :symbol), label: 'Format'
+    # config.add_show_field solr_name('url_fulltext_tsim', :stored_searchable, type: :string), label: 'URL'
+    # config.add_show_field solr_name('url_suppl_tsim', :stored_searchable, type: :string), label: 'More Information'
+    # config.add_show_field solr_name('language', :stored_searchable, type: :string), label: 'Language'
+    # config.add_show_field solr_name('published', :stored_searchable, type: :string), label: 'Published'
+    # config.add_show_field solr_name('published_vern', :stored_searchable, type: :string), label: 'Published'
+    # config.add_show_field solr_name('lc_callnum', :stored_searchable, type: :string), label: 'Call number'
+    # config.add_show_field solr_name('isbn', :stored_searchable, type: :string), label: 'ISBN'
+
+    # solr fields to be displayed in the index (search results) view
+    #   The ordering of the field names is the order of the display
+    config.add_index_field solr_name("title", :stored_searchable), label: "Title", itemprop: 'name', if: false
+    #config.add_index_field solr_name("description", :stored_searchable), label: "Description", itemprop: 'description', helper_method: :iconify_auto_link
+    #config.add_index_field solr_name("abstract", :stored_searchable), label: "Abstract", itemprop: 'abstract', helper_method: :iconify_auto_link
+    #config.add_index_field solr_name("keyword", :stored_searchable), label: "Keyword", itemprop: 'keywords', link_to_search: solr_name("keyword", :facetable)
+    #config.add_index_field solr_name("subject", :stored_searchable), label: "Subject", itemprop: 'about', link_to_search: solr_name("subject", :facetable)
+    #config.add_index_field solr_name("creator", :stored_searchable), label: "Creator", itemprop: 'creator', link_to_search: solr_name("creator", :facetable)
+    #config.add_index_field solr_name("contributor", :stored_searchable), label: "Contributor", itemprop: 'contributor', link_to_search: solr_name("contributor", :facetable)
+    #config.add_index_field solr_name("proxy_depositor", :symbol), label: "Depositor", helper_method: :link_to_profile
+    #config.add_index_field solr_name("depositor"), label: "Owner", helper_method: :link_to_profile
+    #config.add_index_field solr_name("publisher", :stored_searchable), label: "Publisher", itemprop: 'publisher', link_to_search: solr_name("publisher", :facetable)
+    #config.add_index_field solr_name("based_near", :stored_searchable), label: "Location", itemprop: 'contentLocation', link_to_search: solr_name("based_near", :facetable)
+    #config.add_index_field solr_name("language", :stored_searchable), label: "Language", itemprop: 'inLanguage', link_to_search: solr_name("language", :facetable)
+    #config.add_index_field solr_name("date_uploaded", :stored_sortable, type: :date), label: "Date Uploaded", itemprop: 'datePublished', helper_method: :human_readable_date
+    #config.add_index_field solr_name("date_modified", :stored_sortable, type: :date), label: "Date Modified", itemprop: 'dateModified', helper_method: :human_readable_date
+    #config.add_index_field solr_name("date_created", :stored_searchable), label: "Date Created", itemprop: 'dateCreated'
+    #config.add_index_field solr_name("rights", :stored_searchable), label: "Rights", helper_method: :license_links
+    #config.add_index_field solr_name("resource_type", :stored_searchable), label: "Resource Type", link_to_search: solr_name("resource_type", :facetable)
+    config.add_index_field solr_name("file_format", :stored_searchable), label: "File Format", link_to_search: solr_name("file_format", :facetable)
+    #config.add_index_field solr_name("identifier", :stored_searchable), label: "Identifier", helper_method: :index_field_link, field_name: 'identifier'
+    config.add_index_field solr_name("embargo_release_date", :stored_sortable, type: :date), label: "Embargo release date", helper_method: :human_readable_date
+    config.add_index_field solr_name("lease_expiration_date", :stored_sortable, type: :date), label: "Lease expiration date", helper_method: :human_readable_date
+
+    # Journal Article
+    config.add_index_field solr_name("creator_value", :stored_searchable), label: "Creator", itemprop: 'creator_value', link_to_search: solr_name("creator_value", :facetable)
+    config.add_index_field solr_name("department_value", :stored_searchable), label: "Department, Research Centre or other unit", itemprop: 'creator_value', link_to_search: solr_name("department_value", :facetable)
+    config.add_index_field solr_name("refereed", :stored_searchable), label: "Refereed", helper_method: :refereed_string
+    config.add_index_field solr_name("publication_status", :stored_searchable), label: "Publication status", helper_method: :publication_status_string
+    config.add_index_field solr_name("journal", :stored_searchable), label: "Journal", itemprop: 'journal', link_to_search: solr_name("journal", :facetable)
+    config.add_index_field solr_name("funder", :stored_searchable), label: "Funder", itemprop: 'funder', link_to_search: solr_name("funder", :facetable)
+    config.add_index_field solr_name("language", :stored_searchable), label: "Language", itemprop: 'inLanguage', link_to_search: solr_name("language", :facetable)
+    config.add_index_field solr_name("content_version", :stored_searchable), itemprop: 'version', link_to_search: solr_name("content_version", :facetable)
+
+    # solr fields to be displayed in the show (single result) view
+    # The ordering of the field names is the order of the display
+    config.add_show_field solr_name("title", :stored_searchable), label: "Title"
+    config.add_show_field solr_name("description", :stored_searchable), label: "Description"
+    config.add_show_field solr_name("keyword", :stored_searchable), label: "Keyword"
+    #config.add_show_field solr_name("subject", :stored_searchable), label: "Subject"
+    #config.add_show_field solr_name("creator", :stored_searchable), label: "Creator"
+    #config.add_show_field solr_name("contributor", :stored_searchable), label: "Contributor"
+    config.add_show_field solr_name("publisher", :stored_searchable), label: "Publisher"
+    #config.add_show_field solr_name("based_near", :stored_searchable), label: "Location"
+    config.add_show_field solr_name("language", :stored_searchable), label: "Language"
+    config.add_show_field solr_name("date_uploaded", :stored_searchable), label: "Date Uploaded"
+    config.add_show_field solr_name("date_modified", :stored_searchable), label: "Date Modified"
+    config.add_show_field solr_name("date_created", :stored_searchable), label: "Date Created"
+    config.add_show_field solr_name("rights", :stored_searchable), label: "Rights"
+    #config.add_show_field solr_name("resource_type", :stored_searchable), label: "Resource Type"
+    config.add_show_field solr_name("format", :stored_searchable), label: "File Format"
+    config.add_show_field solr_name("identifier", :stored_searchable), label: "Identifier"
+
+    # Journal Article
+    config.add_show_field solr_name("creator_value", :stored_searchable), label: "Creator"
+    config.add_show_field solr_name("department_value", :stored_searchable), label: "Department, Research Centre or other unit"
+    config.add_show_field solr_name("journal", :stored_searchable), label: "Journal"
+    config.add_show_field solr_name("abstract", :stored_searchable), label: "Abstract"
+    config.add_show_field solr_name("date_published", :stored_searchable), label: "Date Published"
+    config.add_show_field solr_name("date_available", :stored_searchable), label: "Date Available"
+    config.add_show_field solr_name("date_accepted", :stored_searchable), label: "Date Accepted"
+    config.add_show_field solr_name("date_submitted", :stored_searchable), label: "Date Submitted"
+    config.add_show_field solr_name("refereed", :stored_searchable), label: "Refereed"
+    config.add_show_field solr_name("publication_status", :stored_searchable), label: "Publication Status"
+    config.add_show_field solr_name("volume_number", :stored_searchable), label: "Volume"
+    config.add_show_field solr_name("issue_number", :stored_searchable), label: "Issue"
+    config.add_show_field solr_name("official_url", :stored_searchable), label: "Official URL"
+    config.add_show_field solr_name("pagination", :stored_searchable), label: "Pages"
+    config.add_show_field solr_name("doi", :stored_searchable), label: "DOI"
+    config.add_show_field solr_name("subject", :stored_searchable), label: "Subject"
+    config.add_show_field solr_name("funder", :stored_searchable), label: "Funder"
+    config.add_show_field solr_name("project_value", :stored_searchable), label: "Related project"
+    config.add_show_field solr_name("managing_organisation_value", :stored_searchable), label: "Managing Organisation"
 
     # "fielded" search configuration. Used by pulldown among other places.
     # For supported keys in hash, see rdoc for Blacklight::SearchFields

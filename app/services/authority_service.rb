@@ -4,12 +4,6 @@ module AuthorityService
 	class ProjectService < Dlibhydra::Terms::ProjectTerms
 		include ::LocalAuthorityConcern
 	end
-	class JournalService < Dlibhydra::Terms::JournalTerms
-		include ::LocalAuthorityConcern
-	end
-	class SubjectService < Dlibhydra::Terms::SubjectTerms
-		include ::LocalAuthorityConcern
-	end
 	class CurrentOrganisationService < Dlibhydra::Terms::CurrentOrganisationTerms
 		include ::LocalAuthorityConcern
 	end

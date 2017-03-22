@@ -4,6 +4,8 @@ Hyrax.config do |config|
   config.register_curation_concern :book
   # Injected via `rails g local:work JournalArticle`
   config.register_curation_concern :journal_article
+  # Injected via `rails g hyrax:work Thesis`
+  config.register_curation_concern :thesis
 
   # Register roles that are expected by your implementation.
   # @see Hyrax::RoleRegistry for additional details.

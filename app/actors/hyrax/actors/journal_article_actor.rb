@@ -36,23 +36,6 @@ module Hyrax
 
       protected
 
-      # Find the object for each creator_reource_id
-      # Create new object from project_name and project_identifier
-      # For ORCIDs, validate and lookup the ORCID
-      #   create CurrentPerson from the ORCID
-      # This is an autosuggest, so the value is returned
-      def apply_creators(attributes)
-        attributes[:creator_resource] ||= []
-        attributes[:creator_resource_ids].collect do |creator|
-          attributes[:creator_resource] << add_person(creator)
-        end
-        # attributes[:orcid].collect do |orcid|
-        #   attributes[:creator_resource] << create_person(orcid)
-        # end
-        # trim_attributes(attributes, [:creator_resource_ids, :orcid])
-        trim_attributes(attributes, [:creator_resource_ids])
-      end
-
       def apply_managing_organisation(attributes)
         attributes[:managing_organisation_resource_ids] = [find_managing_organisation]
         attributes
@@ -86,11 +69,6 @@ module Hyrax
         attributes[:date].uniq!
       end
 
-      # Delete the specified attributes
-      def trim_attributes(attributes, to_remove)
-        to_remove.each { |a| attributes.delete(a) }
-        attributes
-      end
     end
   end
 end
