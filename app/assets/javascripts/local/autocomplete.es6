@@ -16,6 +16,11 @@ export class Autocomplete {
                 case "journal":
                     this.autocompleteFunder(selector);
                     break;
+                case "awarding_institution_resource_ids":
+                    // although hard-coding here could work for 'new' it messes up edit
+                    this.autocompleteAwardingInstitution(selector); //.val('University of London');
+                    //;
+                    break;
             }
         });
     }
@@ -34,6 +39,9 @@ export class Autocomplete {
         else if (/_journal$/.test($cloneElem.attr("id"))) {
             this.autocompleteJournal($cloneElem);
         }
+        else if (/_awarding_institution_resource_ids$/.test($cloneElem.attr("id"))) {
+            this.autocompleteAwardingInstitution($cloneElem);
+        }
     }
 
     autocompleteCreator(field) {
@@ -49,6 +57,11 @@ export class Autocomplete {
     autocompleteJournal(field) {
         var jnl = require('local/autocomplete/journal');
         new jnl.Journal(field, field.data('autocomplete-url'))
+    }
+
+    autocompleteAwardingInstitution(field) {
+        var awi = require('local/autocomplete/awarding_institution');
+        new awi.AwardingInstitution(field, field.data('autocomplete-url'))
     }
 
 

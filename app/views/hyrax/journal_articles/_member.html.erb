@@ -9,7 +9,7 @@
     <% if member.try(:content_version) %>
         <br/>
         <strong>content version: </strong>
-        <%= content_version_string(member.try(:content_version)) %>
+        <%= label_for_show(member.try(:content_version), 'content_version') %>
     <% end %>
     <% unless member.try(:rights).blank? %>
         <br/>

@@ -27,13 +27,12 @@ module AuthorityService
 			super('resource_types')
 		end
 	end
-  class QualificationNamesService < Hyrax::QaSelectService
-    include ::FileAuthorityConcern
-
-    def initialize
-      super('qualification_names')
-    end
-  end
+	class QualificationNamesService < Hyrax::QaSelectService
+	include ::FileAuthorityConcern
+		def initialize
+			super('qualification_names')
+		end
+	end
 	class QualificationLevelsService < Hyrax::QaSelectService
 	include ::FileAuthorityConcern
 		def initialize
@@ -58,10 +57,10 @@ module AuthorityService
 			super('languages')
 		end
 	end
-	class JournalArticleVersionsService < Hyrax::QaSelectService
+	class ContentVersionsService < Hyrax::QaSelectService
 	include ::FileAuthorityConcern
 		def initialize
-			super('journal_article_versions')
+			super('content_versions')
 		end
 	end
 

@@ -1,5 +1,5 @@
 <% qn_service = AuthorityService::QualificationNamesService.new %>
-<%= f.input :qualification_name,
+<%= f.input :qualification_name, as: :multi_value_select,
             collection: qn_service.select_active_options,
             include_blank: true,
             item_helper: qn_service.method(:include_current_value),

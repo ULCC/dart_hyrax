@@ -3,7 +3,8 @@ class PublicationStatusAttributeRenderer < Hyrax::Renderers::AttributeRenderer
   private
 
   def attribute_value_to_html(value)
-    link_to(publication_status_string(value), search_path(value))
+    link_to(label_for_show(value, 'publication_status'), search_path(value))
+    #link_to(value, search_path(value))
   end
 
   def search_path(value)

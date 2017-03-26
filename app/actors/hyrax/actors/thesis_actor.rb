@@ -3,12 +3,14 @@
 module Hyrax
   module Actors
     class ThesisActor < Hyrax::Actors::BaseActor
-      include CreatorsHelper
+
       include LocalActorsHelper
 
       def create(attributes)
         @cloud_resources = attributes.delete(:cloud_resources.to_s)
         apply_creators(attributes)
+        apply_advisors(attributes)
+        apply_awarding_institution(attributes)
         apply_dates(attributes)
         apply_creation_data_to_curation_concern
         apply_save_data_to_curation_concern(attributes)
@@ -19,6 +21,8 @@ module Hyrax
 
       def update(attributes)
         apply_creators(attributes)
+        apply_advisors(attributes)
+        apply_awarding_institution(attributes)
         apply_dates(attributes)
         apply_update_data_to_curation_concern
         apply_save_data_to_curation_concern(attributes)
@@ -35,9 +39,6 @@ module Hyrax
         attributes[:date] << attributes[:date_of_award]
         attributes[:date].uniq!
       end
-
-      # TODO - Advisor (similar to Creator)
-      # TODO = Awarding Institution
 
     end
   end

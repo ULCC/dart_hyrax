@@ -4,10 +4,10 @@ module Hyrax
   module Actors
     # JournalArticleActor
     class JournalArticleActor < Hyrax::Actors::BaseActor
-      include CreatorsHelper
-      include LocalActorsHelper
-      include ProjectsHelper
-      include ManagingOrganisationHelper
+      include PeopleHelper,
+              LocalActorsHelper,
+              ProjectsHelper,
+              ManagingOrganisationHelper
 
       def create(attributes)
         @cloud_resources = attributes.delete(:cloud_resources.to_s)
@@ -37,7 +37,7 @@ module Hyrax
       protected
 
       def apply_managing_organisation(attributes)
-        attributes[:managing_organisation_resource_ids] = [find_managing_organisation]
+        attributes[:managing_organisation_resource_ids] = [managing_organisation_id]
         attributes
       end
 

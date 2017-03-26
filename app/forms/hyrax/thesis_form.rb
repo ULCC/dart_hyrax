@@ -28,8 +28,7 @@ module Hyrax
                    :related_url, # check for valid url
     ]
 
-    self.required_fields = [:title, :creator_resource_ids, :department_resource_ids, :qualification_level, :qualification_name, :date_of_award]
-    #, :awarding_institution_resource_ids]
+    self.required_fields = [:title, :creator_resource_ids, :department_resource_ids, :qualification_level, :qualification_name, :date_of_award, :awarding_institution_resource_ids]
     self.required_fields -= [:creator, :keyword]
 
   end

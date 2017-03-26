@@ -3,7 +3,7 @@
   <p><strong>License: </strong>
   <%= @presenter.rights.first %></p>
   <p><strong>Content Version: </strong>
-    <%= content_version_string(@presenter.content_version) %></p>
+    <%= label_for_show(@presenter.content_version, 'content_version') %></p>
 </div>
 <dl class="dl-horizontal file-show-term file-show-details">
   <dt>Depositor</dt>

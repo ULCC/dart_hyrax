@@ -1,9 +1,9 @@
-class ContentVersionAttributeRenderer < Hyrax::Renderers::AttributeRenderer
+class QualificationLevelAttributeRenderer < Hyrax::Renderers::AttributeRenderer
   include LocalHelper
   private
 
   def attribute_value_to_html(value)
-    link_to(value_for_show(value,'content_version'), search_path(value))
+    link_to(label_for_show(value,'qualification_level'), search_path(value))
   end
 
   def search_path(value)

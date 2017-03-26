@@ -1,5 +1,5 @@
 <% ql_service = AuthorityService::QualificationLevelsService.new %>
-<%= f.input :qualification_level,
+<%= f.input :qualification_level, as: :multi_value_select,
             collection: ql_service.select_active_options,
             include_blank: true,
             item_helper: ql_service.method(:include_current_value),

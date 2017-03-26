@@ -1,10 +1,10 @@
 <%= presenter.attribute_to_html(:title, render_as: :faceted) %>
 <%= presenter.attribute_to_html(:creator_value, render_as: :faceted, label: "Creator") %>
-<%= presenter.attribute_to_html(:date_accepted) %>
-<%= presenter.attribute_to_html(:awarding_institution, render_as: :faceted) %>
+<%= presenter.attribute_to_html(:date_of_award) %>
+<%= presenter.attribute_to_html(:awarding_institution, render_as: :faceted, label: "Awarding Institution") %>
 <%= presenter.attribute_to_html(:department, render_as: :faceted, label: "Department, Research Centre or other unit") %>
-<%= presenter.attribute_to_html(:qualification_level, render_as: :external_link, label: "Qualification Level") %>
-<%= presenter.attribute_to_html(:qualification_name, render_as: :external_link, label: "Qualification Name") %>
+<%= presenter.attribute_to_html(:qualification_level, render_as: :qualification_level, label: "Qualification Level") %>
+<%= presenter.attribute_to_html(:qualification_name, render_as: :qualification_name, label: "Qualification Name") %>
 <%= presenter.attribute_to_html(:advisor, render_as: :faceted) %>
 <%= presenter.attribute_to_html(:abstract) %>
 <%= presenter.attribute_to_html(:language, render_as: :faceted) %>

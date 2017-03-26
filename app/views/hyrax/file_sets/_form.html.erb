@@ -2,7 +2,7 @@
 
     <%= f.input :title, as: :multi_value, input_html: { class: 'form-control' }, required: f.object.required?(:title) %>
 
-    <% cv_service = AuthorityService::JournalArticleVersionsService.new %>
+    <% cv_service = AuthorityService::ContentVersionsService.new %>
     <%= f.input :content_version, as: :multi_value_select,
                 collection: cv_service.select_active_options,
                 include_blank: true,

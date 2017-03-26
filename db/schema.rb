@@ -408,7 +408,7 @@ ActiveRecord::Schema.define(version: 20170321132020) do
     t.datetime "updated_at",             null: false
     t.integer  "permission_template_id"
     t.boolean  "active"
-    t.boolean "allows_access_grant"
+    t.boolean  "allows_access_grant"
     t.index ["permission_template_id", "name"], name: "index_sipity_workflows_on_permission_template_and_name", unique: true
   end
 

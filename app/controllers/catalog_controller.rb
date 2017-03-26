@@ -96,7 +96,7 @@ class CatalogController < ApplicationController
     config.add_facet_field solr_name("department_value", :facetable), label: "Department, Research Centre or other unit"
     config.add_facet_field solr_name("date", :facetable), label: "Dates"
     config.add_facet_field solr_name("refereed", :facetable), label: "Refereed", helper_method: :refereed_string
-    config.add_facet_field solr_name("publication_status", :facetable), label: "Publication Status", helper_method: :publication_status_string
+    config.add_facet_field solr_name("publication_status", :facetable), label: "Publication Status", helper_method: :label_for_index
     config.add_facet_field solr_name("creator_value", :facetable), label: "Creator", limit: 5
     config.add_facet_field solr_name("funder", :facetable), label: "Funder", limit: 5
     config.add_facet_field solr_name("project_value", :facetable), label: "Project", limit: 5
@@ -166,11 +166,15 @@ class CatalogController < ApplicationController
     config.add_index_field solr_name("creator_value", :stored_searchable), label: "Creator", itemprop: 'creator_value', link_to_search: solr_name("creator_value", :facetable)
     config.add_index_field solr_name("department_value", :stored_searchable), label: "Department, Research Centre or other unit", itemprop: 'creator_value', link_to_search: solr_name("department_value", :facetable)
     config.add_index_field solr_name("refereed", :stored_searchable), label: "Refereed", helper_method: :refereed_string
-    config.add_index_field solr_name("publication_status", :stored_searchable), label: "Publication status", helper_method: :publication_status_string
+    config.add_index_field solr_name("publication_status", :stored_searchable), label: "Publication status", helper_method: :label_for_index
     config.add_index_field solr_name("journal", :stored_searchable), label: "Journal", itemprop: 'journal', link_to_search: solr_name("journal", :facetable)
     config.add_index_field solr_name("funder", :stored_searchable), label: "Funder", itemprop: 'funder', link_to_search: solr_name("funder", :facetable)
     config.add_index_field solr_name("language", :stored_searchable), label: "Language", itemprop: 'inLanguage', link_to_search: solr_name("language", :facetable)
     config.add_index_field solr_name("content_version", :stored_searchable), itemprop: 'version', link_to_search: solr_name("content_version", :facetable)
+
+    # Thesis
+    config.add_index_field solr_name("qualification_level", :stored_searchable), label: "Qualification level", helper_method: :label_for_index
+    config.add_index_field solr_name("qualification_name", :stored_searchable), label: "Qualification name", helper_method: :label_for_index
 
     # solr fields to be displayed in the show (single result) view
     # The ordering of the field names is the order of the display
@@ -211,6 +215,10 @@ class CatalogController < ApplicationController
     config.add_show_field solr_name("funder", :stored_searchable), label: "Funder"
     config.add_show_field solr_name("project_value", :stored_searchable), label: "Related project"
     config.add_show_field solr_name("managing_organisation_value", :stored_searchable), label: "Managing Organisation"
+
+    # Thesis
+
+
 
     # "fielded" search configuration. Used by pulldown among other places.
     # For supported keys in hash, see rdoc for Blacklight::SearchFields

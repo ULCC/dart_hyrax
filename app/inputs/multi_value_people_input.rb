@@ -1,4 +1,4 @@
-class MultiValueAutosuggestInput < MultiValueInput
+class MultiValuePeopleInput < MultiValueInput
   def input_type
     'multi_value'.freeze
   end
