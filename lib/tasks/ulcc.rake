@@ -67,21 +67,21 @@ namespace :ulcc do
         scheme = ''
         solr = RSolr.connect :url => SOLR
         response = solr.get 'select', :params => {
-            :q=>"preflabel_tesim:#{i} AND has_model_ssim:Dlibhydra::ConceptScheme",
+            :q => "preflabel_tesim:#{i} AND has_model_ssim:DogBiscuits::ConceptScheme",
             :start=>0,
             :rows=>10
         }
 
         if response["response"]["numFound"] == 0
           puts 'Creating the Concept Scheme'
-          scheme = Dlibhydra::ConceptScheme.new
+          scheme = DogBiscuits::ConceptScheme.new
         else
           puts 'Retrieving the Concept Scheme'
-          scheme = Dlibhydra::ConceptScheme.find(response["response"]["docs"].first['id'])
+          scheme = DogBiscuits::ConceptScheme.find(response["response"]["docs"].first['id'])
         end
         scheme.preflabel = i
         scheme.save
-        config = Rails.root + 'config/dlibhydra.yml'
+        config = Rails.root + 'config/dog_biscuits.yml'
         text = File.read(config)
         replacement_text = text.gsub(/#{i}:\s\S{2,}\n/, "#{i}: '#{scheme.id}'\n")
         File.open(config, "w") {|file| file.puts replacement_text }
@@ -98,7 +98,7 @@ namespace :ulcc do
       #
       # arr.each do |c|
       #   begin
-      #     h = Dlibhydra::Concept.new
+      #     h = DogBiscuits::Concept.new
       #     h.preflabel = c[0].strip
       #     h.altlabel = [c[2].strip] unless c[2].nil?
       #     h.same_as = [c[1].strip] unless c[1].nil?
@@ -125,21 +125,21 @@ namespace :ulcc do
         scheme = ''
         solr = RSolr.connect :url => SOLR
         response = solr.get 'select', :params => {
-            :q=>"preflabel_tesim:#{i} AND has_model_ssim:Dlibhydra::ConceptScheme",
+            :q => "preflabel_tesim:#{i} AND has_model_ssim:DogBiscuits::ConceptScheme",
             :start=>0,
             :rows=>10
         }
 
         if response["response"]["numFound"] == 0
           puts 'Creating the Concept Scheme'
-          scheme = Dlibhydra::ConceptScheme.new
+          scheme = DogBiscuits::ConceptScheme.new
         else
           puts 'Retrieving the Concept Scheme'
-          scheme = Dlibhydra::ConceptScheme.find(response["response"]["docs"].first['id'])
+          scheme = DogBiscuits::ConceptScheme.find(response["response"]["docs"].first['id'])
         end
         scheme.preflabel = i
         scheme.save
-        config = Rails.root + 'config/dlibhydra.yml'
+        config = Rails.root + 'config/dog_biscuits.yml'
         text = File.read(config)
         replacement_text = text.gsub(/#{i}:\s\S{2,}/, "#{i}: '#{scheme.id}'")
         File.open(config, "w") {|file| file.puts replacement_text }
@@ -168,21 +168,21 @@ namespace :ulcc do
         scheme = ''
         solr = RSolr.connect :url => SOLR
         response = solr.get 'select', :params => {
-            :q=>"preflabel_tesim:#{i} AND has_model_ssim:Dlibhydra::ConceptScheme",
+            :q => "preflabel_tesim:#{i} AND has_model_ssim:DogBiscuits::ConceptScheme",
             :start=>0,
             :rows=>10
         }
 
         if response["response"]["numFound"] == 0
           puts 'Creating the Concept Scheme'
-          scheme = Dlibhydra::ConceptScheme.new
+          scheme = DogBiscuits::ConceptScheme.new
         else
           puts 'Retrieving the Concept Scheme'
-          scheme = Dlibhydra::ConceptScheme.find(response["response"]["docs"].first['id'])
+          scheme = DogBiscuits::ConceptScheme.find(response["response"]["docs"].first['id'])
         end
         scheme.preflabel = i
         scheme.save
-        config = Rails.root + 'config/dlibhydra.yml'
+        config = Rails.root + 'config/dog_biscuits.yml'
         text = File.read(config)
         replacement_text = text.gsub(/#{i}:\s\S{2,}/, "#{i}: '#{scheme.id}'")
         File.open(config, "w") {|file| file.puts replacement_text }
@@ -204,7 +204,7 @@ namespace :ulcc do
           }
 
           if response["response"]["numFound"] == 0
-            h = Dlibhydra::CurrentOrganisation.new
+            h = DogBiscuits::CurrentOrganisation.new
             h.preflabel = c[0].strip
             h.name = c[0].strip
             h.altlabel = [c[2].strip] unless c[2].nil?
@@ -238,21 +238,21 @@ namespace :ulcc do
       scheme = ''
       solr = RSolr.connect :url => SOLR
       response = solr.get 'select', :params => {
-          :q => "preflabel_tesim:#{i} AND has_model_ssim:Dlibhydra::ConceptScheme",
+          :q => "preflabel_tesim:#{i} AND has_model_ssim:DogBiscuits::ConceptScheme",
           :start => 0,
           :rows => 10
       }
 
       if response["response"]["numFound"] == 0
         puts 'Creating the Concept Scheme'
-        scheme = Dlibhydra::ConceptScheme.new
+        scheme = DogBiscuits::ConceptScheme.new
       else
         puts 'Retrieving the Concept Scheme'
-        scheme = Dlibhydra::ConceptScheme.find(response["response"]["docs"].first['id'])
+        scheme = DogBiscuits::ConceptScheme.find(response["response"]["docs"].first['id'])
       end
       scheme.preflabel = i
       scheme.save
-      config = Rails.root + 'config/dlibhydra.yml'
+      config = Rails.root + 'config/dog_biscuits.yml'
       text = File.read(config)
       replacement_text = text.gsub(/#{i}:\s\S{2,}/, "#{i}: '#{scheme.id}'")
       File.open(config, "w") { |file| file.puts replacement_text }
@@ -265,7 +265,7 @@ namespace :ulcc do
 
       if response["response"]["numFound"] == 0
         puts 'Creating the Organisation'
-        institution = Dlibhydra::CurrentOrganisation.new
+        institution = DogBiscuits::CurrentOrganisation.new
         institution.preflabel = org
         institution.name = org
         institution.concept_scheme = scheme
@@ -289,21 +289,21 @@ namespace :ulcc do
         scheme = ''
         solr = RSolr.connect :url => SOLR
         response = solr.get 'select', :params => {
-            :q=>"preflabel_tesim:#{i} AND has_model_ssim:Dlibhydra::ConceptScheme",
+            :q => "preflabel_tesim:#{i} AND has_model_ssim:DogBiscuits::ConceptScheme",
             :start=>0,
             :rows=>10
         }
 
         if response["response"]["numFound"] == 0
           puts 'Creating the Concept Scheme'
-          scheme = Dlibhydra::ConceptScheme.new
+          scheme = DogBiscuits::ConceptScheme.new
         else
           puts 'Retrieving the Concept Scheme'
-          scheme = Dlibhydra::ConceptScheme.find(response["response"]["docs"].first['id'])
+          scheme = DogBiscuits::ConceptScheme.find(response["response"]["docs"].first['id'])
         end
         scheme.preflabel = i
         scheme.save
-        config = Rails.root + 'config/dlibhydra.yml'
+        config = Rails.root + 'config/dog_biscuits.yml'
         text = File.read(config)
         replacement_text = text.gsub(/#{i}:\s\S{2,}/, "#{i}: '#{scheme.id}'")
         File.open(config, "w") {|file| file.puts replacement_text }

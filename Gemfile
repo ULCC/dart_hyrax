@@ -11,7 +11,7 @@ gem 'blacklight', '6.7.3'
 # Local gems
 gem 'dotenv-rails'
 gem 'hydra-role-management'
-gem 'dlibhydra', :git => 'https://github.com/geekscruff/dlibhydra.git', branch: 'hyrax_jal'
+gem 'dog_biscuits', :git => 'https://github.com/geekscruff/dog_biscuits.git', branch: 'dlibhydra'
 gem 'qa'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -27,7 +27,7 @@ gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 # See https://github.com/rails/execjs#readme for more supported runtimes
-gem 'therubyracer', platforms: :ruby
+# gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

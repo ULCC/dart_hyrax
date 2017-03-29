@@ -1,6 +1,6 @@
 # Generated via
 #  `rails generate local:work JournalArticle`
-class JournalArticle < ::Dlibhydra::JournalArticle # ActiveFedora::Base
+class JournalArticle < ::DogBiscuits::JournalArticle # ActiveFedora::Base
   include ::Hyrax::WorkBehavior
   # include ::Hyrax::BasicMetadata
   # Change this to restrict which works can be added as a child.
@@ -10,7 +10,7 @@ class JournalArticle < ::Dlibhydra::JournalArticle # ActiveFedora::Base
   self.human_readable_type = 'Journal Article'
 
   class JournalArticleIndexer < Hyrax::WorkIndexer
-    include Dlibhydra::IndexesJournalArticle
+    include DogBiscuits::IndexesJournalArticle
   end
 
   def self.indexer

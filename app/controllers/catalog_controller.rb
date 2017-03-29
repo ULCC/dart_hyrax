@@ -36,14 +36,14 @@ class CatalogController < ApplicationController
             "journal_tesim " +
             "date_tesim " +
             "abstract_tesim " +
-            "publication_status_tesim " +
-            "refereed_tesim " +
             "language_tesim " +
             "department_value_tesim " +
             "subject_tesim " +
             "keyword_tesim " +
             "funder_tesim " +
-            "project_value_tesim"
+            "project_value_tesim" +
+            "advisor_value_tesim" +
+            "awarding_institution_tesim"
         # TODO add more
     }
 
@@ -99,7 +99,10 @@ class CatalogController < ApplicationController
     config.add_facet_field solr_name("publication_status", :facetable), label: "Publication Status", helper_method: :label_for_index
     config.add_facet_field solr_name("creator_value", :facetable), label: "Creator", limit: 5
     config.add_facet_field solr_name("funder", :facetable), label: "Funder", limit: 5
-    config.add_facet_field solr_name("project_value", :facetable), label: "Project", limit: 5
+    config.add_facet_field solr_name("project_value", :facetable), label: "Awaarding Institution", limit: 5
+
+    #Thesis
+    config.add_facet_field solr_name("awarding_institution_value", :facetable), label: "Project", limit: 5
 
     # Have BL send all facet field names to Solr, which has been the default
     # previously. Simply remove these lines if you'd rather use Solr request
@@ -146,7 +149,7 @@ class CatalogController < ApplicationController
     #config.add_index_field solr_name("keyword", :stored_searchable), label: "Keyword", itemprop: 'keywords', link_to_search: solr_name("keyword", :facetable)
     #config.add_index_field solr_name("subject", :stored_searchable), label: "Subject", itemprop: 'about', link_to_search: solr_name("subject", :facetable)
     #config.add_index_field solr_name("creator", :stored_searchable), label: "Creator", itemprop: 'creator', link_to_search: solr_name("creator", :facetable)
-    #config.add_index_field solr_name("contributor", :stored_searchable), label: "Contributor", itemprop: 'contributor', link_to_search: solr_name("contributor", :facetable)
+    config.add_index_field solr_name("contributor", :stored_searchable), label: "Contributor", itemprop: 'contributor', link_to_search: solr_name("contributor", :facetable)
     #config.add_index_field solr_name("proxy_depositor", :symbol), label: "Depositor", helper_method: :link_to_profile
     #config.add_index_field solr_name("depositor"), label: "Owner", helper_method: :link_to_profile
     #config.add_index_field solr_name("publisher", :stored_searchable), label: "Publisher", itemprop: 'publisher', link_to_search: solr_name("publisher", :facetable)
@@ -175,6 +178,7 @@ class CatalogController < ApplicationController
     # Thesis
     config.add_index_field solr_name("qualification_level", :stored_searchable), label: "Qualification level", helper_method: :label_for_index
     config.add_index_field solr_name("qualification_name", :stored_searchable), label: "Qualification name", helper_method: :label_for_index
+    config.add_index_field solr_name("awarding_institution_value", :stored_searchable), label: "Awarding Institution", link_to_search: solr_name("awarding_institution_value", :facetable)
 
     # solr fields to be displayed in the show (single result) view
     # The ordering of the field names is the order of the display
@@ -217,7 +221,7 @@ class CatalogController < ApplicationController
     config.add_show_field solr_name("managing_organisation_value", :stored_searchable), label: "Managing Organisation"
 
     # Thesis
-
+    # I'm confused, things are showing without adding anything here!
 
 
     # "fielded" search configuration. Used by pulldown among other places.

@@ -35,9 +35,9 @@ Load languages from lexvo:
 
 ```rake hyrax:controlled_vocabularies:language```
 
-Generate authorities from dlibhydra
+Generate authorities from dog_biscuits
 
-```rails generate dlibhydra:auths```
+```rails generate dog_biscuits:auths```
 
 Setup authorities
 

@@ -4,7 +4,7 @@ module ProjectsHelper
 
   # Create a Project object
   def create_project(name, identifier = nil)
-    project = Dlibhydra::Project.new
+    project = DogBiscuits::Project.new
     project.preflabel = name
     project.name = name
     project.identifier = [identifier] unless identifier.nil?

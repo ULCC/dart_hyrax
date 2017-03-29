@@ -1,6 +1,6 @@
 # Generated via
 #  `rails generate hyrax:work Thesis`
-class Thesis < ::Dlibhydra::Thesis #ActiveFedora::Base
+class Thesis < ::DogBiscuits::Thesis #ActiveFedora::Base
   include ::Hyrax::WorkBehavior
   # include ::Hyrax::BasicMetadata
   # Change this to restrict which works can be added as a child.
@@ -10,7 +10,7 @@ class Thesis < ::Dlibhydra::Thesis #ActiveFedora::Base
   self.human_readable_type = 'Thesis'
 
   class ThesisIndexer < Hyrax::WorkIndexer
-    include Dlibhydra::IndexesThesis
+    include DogBiscuits::IndexesThesis
   end
 
   def self.indexer
