@@ -17,7 +17,7 @@ module OrcidHelper
     return unless valid_orcid_structure?(orcid)
     return unless valid_orcid_length?(orcid)
     return unless valid_orcid_content?(orcid)
-    valid_orcid_checksum?('orcid')
+    valid_orcid_checksum?(orcid)
   end
 
   def trim_orcid_url(orcid)
