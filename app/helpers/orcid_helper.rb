@@ -69,7 +69,7 @@ module OrcidHelper
   end
 
   def orcid_token
-    return ENV['ORCID_TOKEN'] unless ENV['ORCID_TOKEN'].nil?
+    return ENV['ORCID_TOKEN'] unless ENV['ORCID_TOKEN'].blank?
     access_token = retrieve_orcid_token
     env = Rails.root + '.env'
     if access_token

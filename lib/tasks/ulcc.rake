@@ -115,10 +115,10 @@ namespace :ulcc do
     puts 'Finished!'
   end
 
-  desc "Setup the concept scheme for current_people"
+  desc "Setup the concept scheme for people"
   task load_persons: :environment do
 
-    list = ['current_people']
+    list = ['people']
     list.each do |i|
 
       begin
@@ -204,14 +204,14 @@ namespace :ulcc do
           }
 
           if response["response"]["numFound"] == 0
-            h = DogBiscuits::CurrentOrganisation.new
+            h = DogBiscuits::Organisation.new
             h.preflabel = c[0].strip
             h.name = c[0].strip
             h.altlabel = [c[2].strip] unless c[2].nil?
             h.same_as = [c[1].strip] unless c[1].nil?
             h.concept_scheme = scheme
             h.save
-            scheme.current_organisations << h
+            scheme.organisations << h
             if i == 'departments'
               scheme.departments << h
             end
@@ -227,12 +227,12 @@ namespace :ulcc do
 
   end
 
-  desc "Setup the concept scheme for current_organisations and load managing organisation"
+  desc "Setup the concept scheme for organisations and load managing organisation"
   task load_man: :environment do
 
     require 'yaml'
     org = YAML.load_file("#{Rails.root}/config/locales/hyrax.en.yml")['en']['hyrax']['institution_name']
-    i = 'current_organisations'
+    i = 'organisations'
 
     begin
       scheme = ''
@@ -265,7 +265,7 @@ namespace :ulcc do
 
       if response["response"]["numFound"] == 0
         puts 'Creating the Organisation'
-        institution = DogBiscuits::CurrentOrganisation.new
+        institution = DogBiscuits::Organisation.new
         institution.preflabel = org
         institution.name = org
         institution.concept_scheme = scheme

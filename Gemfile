@@ -11,7 +11,7 @@ gem 'blacklight', '6.7.3'
 # Local gems
 gem 'dotenv-rails'
 gem 'hydra-role-management'
-gem 'dog_biscuits', :git => 'https://github.com/geekscruff/dog_biscuits.git', branch: 'dlibhydra'
+gem 'dog_biscuits', :git => 'https://github.com/geekscruff/dog_biscuits.git'
 gem 'qa'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

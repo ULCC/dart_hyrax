@@ -25,6 +25,8 @@ en:
         project_resource_ids: "Related projects"
         subject: "Subjects"
         keyword: "Keywords"
+        awarding_institution_resource_ids: "Awarding Institutiton"
+        advisor_resource_ids: "Advisors"
 
     hints:
       defaults:
@@ -41,3 +43,5 @@ en:
         publication_status: "The publication status of the work. For works that won't be formally published, use Unpublished."
         subject: "Subject heading describing the topic of the work. Terms are auto-suggested as you type from the Library of Congress Subject Headings."
         keyword: "Words or phrases you select to describe what the work is about."
+        awarding_institution_resource_ids: "The institution awarding the degree"
+        advisor_resource_ids: "The supervisor or advisor of the student submitting the work."

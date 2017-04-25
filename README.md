@@ -37,7 +37,7 @@ Load languages from lexvo:
 
 Generate authorities from dog_biscuits
 
-```rails generate dog_biscuits:auths```
+```rails generate dog_biscuits:install```
 
 Setup authorities
 

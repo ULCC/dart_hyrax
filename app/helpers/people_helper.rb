@@ -2,8 +2,8 @@
 module PeopleHelper
   include OrcidHelper
 
-  # Find the CurrentPerson in Fedora
-  #  if it doesn't exist create a new CurrentPerson
+  # Find the Person in Fedora
+  #  if it doesn't exist create a new Person
   def add_person(person)
     # is this an orcid?
     trimmed_value = trim_orcid_url(person)
@@ -16,7 +16,7 @@ module PeopleHelper
 
   def find_or_create_person(person)
     existing_person =
-        AuthorityService::CurrentPersonService.new.find_id(person)
+        AuthorityService::PeopleService.new.find_id(person)
     if existing_person.blank?
       create_person(person)
     else
@@ -33,20 +33,20 @@ module PeopleHelper
     end
   end
 
-  # Create a CurrentPerson object from the supplied string / orcid
-  # If a CurrentPerson for the orcid exists, update it
+  # Create a Person object from the supplied string / orcid
+  # If a Person for the orcid exists, update it
   def create_person(value)
-    person = DogBiscuits::CurrentPerson.new
-    person.preflabel = value
-    person.concept_scheme = find_concept_scheme('current_people')
-    return person unless person.preflabel.blank?
+    person = DogBiscuits::Person.new
+    person.rdfs_label = value
+    person.concept_scheme = find_concept_scheme('people')
+    return person unless person.rdfs_label.blank?
   end
 
-  # Add data from ORCID to CurrentPerson object
+  # Add data from ORCID to Person object
   def create_person_from_orcid(orcid)
     orcid_real = trim_orcid_url(orcid)
-    person = DogBiscuits::CurrentPerson.new
-    person.concept_scheme = find_concept_scheme('current_people')
+    person = DogBiscuits::Person.new
+    person.concept_scheme = find_concept_scheme('people')
     bio = orcid_response(trim_orcid_url(orcid_real))
     person.orcid = [trim_orcid_url(orcid_real)]
     return add_orcid_details(person, bio) unless bio.blank?
@@ -56,7 +56,7 @@ module PeopleHelper
     pd = bio['orcid-bio']['personal-details']
     person.given_name = pd['given-names']['value']
     person.family_name = pd['family-name']['value']
-    person.preflabel =
+    person.rdfs_label =
         "#{person.given_name}, #{person.family_name}"
     unless pd['other-names'].nil?
       person.altlabel =
@@ -65,11 +65,11 @@ module PeopleHelper
     person
   end
 
-  # If there is already a CurrentPerson for the given orcid, return it
+  # If there is already a Person for the given orcid, return it
   def find_orcid(person_orcid)
     response = query_solr_for_orcid(
         person_orcid,
-        DOGBISCUITS['current_people']
+        DOGBISCUITS['people']
     )
     numfound = response['response']['numFound']
     return find_base(response['response']['docs'][0]['id']) unless numfound == 0

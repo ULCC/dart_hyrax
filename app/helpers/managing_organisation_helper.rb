@@ -14,7 +14,7 @@ module ManagingOrganisationHelper
 
   def managing_organisation_service
     if @morg.nil?
-      @morg = AuthorityService::CurrentOrganisationService.new
+      @morg = AuthorityService::OrganisationsService.new
     else
       @morg
     end

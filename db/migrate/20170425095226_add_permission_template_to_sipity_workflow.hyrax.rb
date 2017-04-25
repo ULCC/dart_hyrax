@@ -1,3 +1,4 @@
+# This migration comes from hyrax (originally 20170131142607)
 class AddPermissionTemplateToSipityWorkflow < ActiveRecord::Migration
   def change
     add_column :sipity_workflows, :permission_template_id, :integer, index: true

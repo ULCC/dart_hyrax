@@ -1,4 +1,4 @@
-<% pr_service = AuthorityService::ProjectService.new %>
+<% pr_service = AuthorityService::ProjectsService.new %>
 <%= f.input :project_resource_ids, as: :multi_value_select,
             collection: pr_service.select_all_options,
             include_blank: true,

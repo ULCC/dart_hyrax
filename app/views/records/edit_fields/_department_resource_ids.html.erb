@@ -1,4 +1,4 @@
-<% dp_service = AuthorityService::DepartmentService.new %>
+<% dp_service = AuthorityService::DepartmentsService.new %>
 <%= f.input :department_resource_ids, as: :multi_value_select,
             collection: dp_service.select_all_options,
             include_blank: true,
